@@ -16,6 +16,8 @@
 		6B03704F1731D782000F218F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B03704E1731D782000F218F /* Default.png */; };
 		6B0370511731D782000F218F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370501731D782000F218F /* Default@2x.png */; };
 		6B0370531731D782000F218F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370521731D782000F218F /* Default-568h@2x.png */; };
+		6B03705C1731DEBB000F218F /* BNRHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03705A1731DEBB000F218F /* BNRHomeVC.m */; };
+		6B03705D1731DEBB000F218F /* BNRHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B03705B1731DEBB000F218F /* BNRHomeVC.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +34,9 @@
 		6B03704E1731D782000F218F /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		6B0370501731D782000F218F /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		6B0370521731D782000F218F /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		6B0370591731DEBB000F218F /* BNRHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHomeVC.h; sourceTree = "<group>"; };
+		6B03705A1731DEBB000F218F /* BNRHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHomeVC.m; sourceTree = "<group>"; };
+		6B03705B1731DEBB000F218F /* BNRHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRHomeVC.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,9 @@
 				6B03704B1731D782000F218F /* BNRAppDelegate.h */,
 				6B03704C1731D782000F218F /* BNRAppDelegate.m */,
 				6B0370431731D782000F218F /* Supporting Files */,
+				6B0370591731DEBB000F218F /* BNRHomeVC.h */,
+				6B03705A1731DEBB000F218F /* BNRHomeVC.m */,
+				6B03705B1731DEBB000F218F /* BNRHomeVC.xib */,
 			);
 			path = CountdownToZero;
 			sourceTree = "<group>";
@@ -155,6 +163,7 @@
 				6B03704F1731D782000F218F /* Default.png in Resources */,
 				6B0370511731D782000F218F /* Default@2x.png in Resources */,
 				6B0370531731D782000F218F /* Default-568h@2x.png in Resources */,
+				6B03705D1731DEBB000F218F /* BNRHomeVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +176,7 @@
 			files = (
 				6B0370491731D782000F218F /* main.m in Sources */,
 				6B03704D1731D782000F218F /* BNRAppDelegate.m in Sources */,
+				6B03705C1731DEBB000F218F /* BNRHomeVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
