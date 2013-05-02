@@ -10,13 +10,18 @@
 #import "BNRMediaCell.h"
 #import "BNRPhoto.h"
 #import "BNRDataStore.h"
+#import "BNRPhotoViewerViewController.h"
 
 #define PHOTO_CELL @"PHOTO_CELL"
 
-@interface BNRPhotoVC ()
+@interface BNRPhotoVC () <BNRPhotoViewerDelegate>
 {
     NSArray *_photoArray;
+    BNRPhotoViewerViewController *_photoViewerViewController;
+    BNRMediaCell *_hiddenCell;
 }
+
+- (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture;
 
 @end
 
@@ -55,6 +60,10 @@
             _photoArray = [photos copy];
         }
     }];
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                 action: @selector(handleTapGesture:)];
+    [[self collectionView] addGestureRecognizer: tapGesture];
 }
 
 #pragma mark - UICollectionView DataSource Methods
@@ -75,5 +84,37 @@
     cell.photo = _photoArray[indexPath.row];
     return cell;
 }
+
+#pragma mark - Gesture Recognizer Methods
+
+- (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture
+{
+    CGPoint tapPoint = [tapGesture locationInView: [self collectionView]];
+    NSIndexPath *tapIndexPath = [[self collectionView] indexPathForItemAtPoint: tapPoint];
+    
+    if (tapIndexPath) {
+        _hiddenCell = (BNRMediaCell *)[[self collectionView] cellForItemAtIndexPath: tapIndexPath];
+        CGFloat navHeight = [[[self navigationController] navigationBar] frame].size.height;
+       
+        CGRect photoFrame = [_hiddenCell frame];
+        photoFrame.origin.y += navHeight + 20.0f;
+        _photoViewerViewController = [[BNRPhotoViewerViewController alloc] initWithPhoto: [_hiddenCell photo]
+                                                                           andPhotoFrame: photoFrame];
+        [_photoViewerViewController setDelegate: self];
+        [_hiddenCell setHidden: YES];
+        [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
+    }
+}
+
+#pragma mark - BNRPhotoViewerViewController
+
+- (void)photoViewerDidFinish:(BNRPhotoViewerViewController *)photoViewer
+{
+    [[_photoViewerViewController view] removeFromSuperview];
+    _photoViewerViewController = nil;
+    [_hiddenCell setHidden: NO];
+    _hiddenCell = nil;
+}
+
 
 @end
