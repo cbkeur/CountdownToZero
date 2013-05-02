@@ -51,6 +51,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self collectionView] setBackgroundColor:[UIColor carterBackgroundColor]];
+    
+    UIImageView *eagleHead = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eaglehead"]];
+    [eagleHead setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleRightMargin];
+    [eagleHead setAlpha:0.08];
+    [[self collectionView] insertSubview:eagleHead atIndex:0];
+    [eagleHead setCenter:self.collectionView.center];
     
     [[self collectionView] registerClass: [BNRMediaCell class] forCellWithReuseIdentifier: PHOTO_CELL];
     
