@@ -8,31 +8,68 @@
 
 #import "BNRHomeVC.h"
 
+// View
+#import "BNRCountdownView.h"
+
+// Controller
+#import "BNRHeadlineVC.h"
+
 @interface BNRHomeVC ()
+
+@property (weak, nonatomic) IBOutlet BNRCountdownView *countdownView;
 
 @end
 
 @implementation BNRHomeVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+#pragma mark - Initializers
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
+    self = [super initWithNibName:nil bundle:nil];
+
+    if(self)
+    {
+        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
+        [self.navigationItem setTitleView:titleView];
+//        [self.navigationItem setTitle:@"Countdown To Zero"];
     }
+    
     return self;
 }
+
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+    return [self init];
+}
+
+#pragma mark - View methods
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    
 }
 
-- (void)didReceiveMemoryWarning
+- (void)viewDidAppear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidAppear:animated];
+    
+    static BOOL firstLoad = YES;
+    if(firstLoad)
+    {
+        [_countdownView countdownFrom:10000 to:6 duration:1 completion:nil];
+        firstLoad = NO;
+    }
+}
+
+#pragma mark - Actions
+
+- (IBAction)headlineTapped:(id)sender
+{
+    BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
+    [self.navigationController pushViewController:headlineVC animated:YES];
 }
 
 @end

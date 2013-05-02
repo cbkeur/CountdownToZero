@@ -18,6 +18,24 @@
 		6B0370531731D782000F218F /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370521731D782000F218F /* Default-568h@2x.png */; };
 		6B03705C1731DEBB000F218F /* BNRHomeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03705A1731DEBB000F218F /* BNRHomeVC.m */; };
 		6B03705D1731DEBB000F218F /* BNRHomeVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B03705B1731DEBB000F218F /* BNRHomeVC.xib */; };
+		6B03705F1731E2B1000F218F /* Chad.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6B03705E1731E2B1000F218F /* Chad.jpg */; };
+		6B0370621731E34D000F218F /* BNRCountdownView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370611731E34C000F218F /* BNRCountdownView.m */; };
+		6B0370661731E971000F218F /* BNRAboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370641731E971000F218F /* BNRAboutVC.m */; };
+		6B0370671731E971000F218F /* BNRAboutVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370651731E971000F218F /* BNRAboutVC.xib */; };
+		6B03706B1731EA68000F218F /* icon_cc.gif in Resources */ = {isa = PBXBuildFile; fileRef = 6B03706A1731EA68000F218F /* icon_cc.gif */; };
+		6B03706F1731EC28000F218F /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B03706E1731EC28000F218F /* icon.png */; };
+		6B0370711731EC64000F218F /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370701731EC64000F218F /* icon@2x.png */; };
+		6B0370751731EF51000F218F /* BNRHeadlineVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370731731EF51000F218F /* BNRHeadlineVC.m */; };
+		6B0370761731EF51000F218F /* BNRHeadlineVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370741731EF51000F218F /* BNRHeadlineVC.xib */; };
+		6B03707A1731EFE7000F218F /* BNRPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370781731EFE7000F218F /* BNRPhotoVC.m */; };
+		6B03707B1731EFE7000F218F /* BNRPhotoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370791731EFE7000F218F /* BNRPhotoVC.xib */; };
+		6B03707F1731F008000F218F /* BNRInfoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03707D1731F008000F218F /* BNRInfoVC.m */; };
+		6B0370801731F008000F218F /* BNRInfoVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B03707E1731F008000F218F /* BNRInfoVC.xib */; };
+		6B0370841731F020000F218F /* BNRFactsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370821731F020000F218F /* BNRFactsVC.m */; };
+		6B0370851731F020000F218F /* BNRFactsVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B0370831731F020000F218F /* BNRFactsVC.xib */; };
+		6B0370891731F1D4000F218F /* BNRDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370881731F1D4000F218F /* BNRDataStore.m */; };
+		6B03708D1731F4B5000F218F /* BNRPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03708C1731F4B5000F218F /* BNRPhoto.m */; };
+		6B0370901731F5E3000F218F /* BNRFact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03708F1731F5E3000F218F /* BNRFact.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +55,33 @@
 		6B0370591731DEBB000F218F /* BNRHomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHomeVC.h; sourceTree = "<group>"; };
 		6B03705A1731DEBB000F218F /* BNRHomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHomeVC.m; sourceTree = "<group>"; };
 		6B03705B1731DEBB000F218F /* BNRHomeVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRHomeVC.xib; sourceTree = "<group>"; };
+		6B03705E1731E2B1000F218F /* Chad.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Chad.jpg; sourceTree = "<group>"; };
+		6B0370601731E34C000F218F /* BNRCountdownView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRCountdownView.h; sourceTree = "<group>"; };
+		6B0370611731E34C000F218F /* BNRCountdownView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRCountdownView.m; sourceTree = "<group>"; };
+		6B0370631731E971000F218F /* BNRAboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BNRAboutVC.h; path = ../BNRAboutVC.h; sourceTree = "<group>"; };
+		6B0370641731E971000F218F /* BNRAboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BNRAboutVC.m; path = ../BNRAboutVC.m; sourceTree = "<group>"; };
+		6B0370651731E971000F218F /* BNRAboutVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = BNRAboutVC.xib; path = ../BNRAboutVC.xib; sourceTree = "<group>"; };
+		6B03706A1731EA68000F218F /* icon_cc.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = icon_cc.gif; sourceTree = "<group>"; };
+		6B03706E1731EC28000F218F /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		6B0370701731EC64000F218F /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		6B0370721731EF51000F218F /* BNRHeadlineVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHeadlineVC.h; sourceTree = "<group>"; };
+		6B0370731731EF51000F218F /* BNRHeadlineVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHeadlineVC.m; sourceTree = "<group>"; };
+		6B0370741731EF51000F218F /* BNRHeadlineVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRHeadlineVC.xib; sourceTree = "<group>"; };
+		6B0370771731EFE7000F218F /* BNRPhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPhotoVC.h; sourceTree = "<group>"; };
+		6B0370781731EFE7000F218F /* BNRPhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPhotoVC.m; sourceTree = "<group>"; };
+		6B0370791731EFE7000F218F /* BNRPhotoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPhotoVC.xib; sourceTree = "<group>"; };
+		6B03707C1731F008000F218F /* BNRInfoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRInfoVC.h; sourceTree = "<group>"; };
+		6B03707D1731F008000F218F /* BNRInfoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRInfoVC.m; sourceTree = "<group>"; };
+		6B03707E1731F008000F218F /* BNRInfoVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRInfoVC.xib; sourceTree = "<group>"; };
+		6B0370811731F020000F218F /* BNRFactsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRFactsVC.h; sourceTree = "<group>"; };
+		6B0370821731F020000F218F /* BNRFactsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRFactsVC.m; sourceTree = "<group>"; };
+		6B0370831731F020000F218F /* BNRFactsVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRFactsVC.xib; sourceTree = "<group>"; };
+		6B0370871731F1D4000F218F /* BNRDataStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRDataStore.h; sourceTree = "<group>"; };
+		6B0370881731F1D4000F218F /* BNRDataStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRDataStore.m; sourceTree = "<group>"; };
+		6B03708B1731F4B5000F218F /* BNRPhoto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPhoto.h; sourceTree = "<group>"; };
+		6B03708C1731F4B5000F218F /* BNRPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPhoto.m; sourceTree = "<group>"; };
+		6B03708E1731F5E3000F218F /* BNRFact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRFact.h; sourceTree = "<group>"; };
+		6B03708F1731F5E3000F218F /* BNRFact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRFact.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,12 +128,11 @@
 		6B0370421731D782000F218F /* CountdownToZero */ = {
 			isa = PBXGroup;
 			children = (
-				6B03704B1731D782000F218F /* BNRAppDelegate.h */,
-				6B03704C1731D782000F218F /* BNRAppDelegate.m */,
+				6B03708A1731F4AD000F218F /* Model */,
+				6B0370861731F1B3000F218F /* Store */,
+				6B0370691731E97C000F218F /* Views */,
+				6B0370681731E977000F218F /* Controllers */,
 				6B0370431731D782000F218F /* Supporting Files */,
-				6B0370591731DEBB000F218F /* BNRHomeVC.h */,
-				6B03705A1731DEBB000F218F /* BNRHomeVC.m */,
-				6B03705B1731DEBB000F218F /* BNRHomeVC.xib */,
 			);
 			path = CountdownToZero;
 			sourceTree = "<group>";
@@ -96,6 +140,10 @@
 		6B0370431731D782000F218F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6B03705E1731E2B1000F218F /* Chad.jpg */,
+				6B03706E1731EC28000F218F /* icon.png */,
+				6B0370701731EC64000F218F /* icon@2x.png */,
+				6B03706A1731EA68000F218F /* icon_cc.gif */,
 				6B0370441731D782000F218F /* CountdownToZero-Info.plist */,
 				6B0370451731D782000F218F /* InfoPlist.strings */,
 				6B0370481731D782000F218F /* main.m */,
@@ -105,6 +153,62 @@
 				6B0370521731D782000F218F /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6B0370681731E977000F218F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				6B03704B1731D782000F218F /* BNRAppDelegate.h */,
+				6B03704C1731D782000F218F /* BNRAppDelegate.m */,
+				6B0370591731DEBB000F218F /* BNRHomeVC.h */,
+				6B03705A1731DEBB000F218F /* BNRHomeVC.m */,
+				6B03705B1731DEBB000F218F /* BNRHomeVC.xib */,
+				6B0370631731E971000F218F /* BNRAboutVC.h */,
+				6B0370641731E971000F218F /* BNRAboutVC.m */,
+				6B0370651731E971000F218F /* BNRAboutVC.xib */,
+				6B0370721731EF51000F218F /* BNRHeadlineVC.h */,
+				6B0370731731EF51000F218F /* BNRHeadlineVC.m */,
+				6B0370741731EF51000F218F /* BNRHeadlineVC.xib */,
+				6B0370771731EFE7000F218F /* BNRPhotoVC.h */,
+				6B0370781731EFE7000F218F /* BNRPhotoVC.m */,
+				6B0370791731EFE7000F218F /* BNRPhotoVC.xib */,
+				6B03707C1731F008000F218F /* BNRInfoVC.h */,
+				6B03707D1731F008000F218F /* BNRInfoVC.m */,
+				6B03707E1731F008000F218F /* BNRInfoVC.xib */,
+				6B0370811731F020000F218F /* BNRFactsVC.h */,
+				6B0370821731F020000F218F /* BNRFactsVC.m */,
+				6B0370831731F020000F218F /* BNRFactsVC.xib */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		6B0370691731E97C000F218F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				6B0370601731E34C000F218F /* BNRCountdownView.h */,
+				6B0370611731E34C000F218F /* BNRCountdownView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		6B0370861731F1B3000F218F /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				6B0370871731F1D4000F218F /* BNRDataStore.h */,
+				6B0370881731F1D4000F218F /* BNRDataStore.m */,
+			);
+			name = Store;
+			sourceTree = "<group>";
+		};
+		6B03708A1731F4AD000F218F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6B03708B1731F4B5000F218F /* BNRPhoto.h */,
+				6B03708C1731F4B5000F218F /* BNRPhoto.m */,
+				6B03708E1731F5E3000F218F /* BNRFact.h */,
+				6B03708F1731F5E3000F218F /* BNRFact.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,6 +268,15 @@
 				6B0370511731D782000F218F /* Default@2x.png in Resources */,
 				6B0370531731D782000F218F /* Default-568h@2x.png in Resources */,
 				6B03705D1731DEBB000F218F /* BNRHomeVC.xib in Resources */,
+				6B03705F1731E2B1000F218F /* Chad.jpg in Resources */,
+				6B0370671731E971000F218F /* BNRAboutVC.xib in Resources */,
+				6B03706B1731EA68000F218F /* icon_cc.gif in Resources */,
+				6B03706F1731EC28000F218F /* icon.png in Resources */,
+				6B0370711731EC64000F218F /* icon@2x.png in Resources */,
+				6B0370761731EF51000F218F /* BNRHeadlineVC.xib in Resources */,
+				6B03707B1731EFE7000F218F /* BNRPhotoVC.xib in Resources */,
+				6B0370801731F008000F218F /* BNRInfoVC.xib in Resources */,
+				6B0370851731F020000F218F /* BNRFactsVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +290,15 @@
 				6B0370491731D782000F218F /* main.m in Sources */,
 				6B03704D1731D782000F218F /* BNRAppDelegate.m in Sources */,
 				6B03705C1731DEBB000F218F /* BNRHomeVC.m in Sources */,
+				6B0370621731E34D000F218F /* BNRCountdownView.m in Sources */,
+				6B0370661731E971000F218F /* BNRAboutVC.m in Sources */,
+				6B0370751731EF51000F218F /* BNRHeadlineVC.m in Sources */,
+				6B03707A1731EFE7000F218F /* BNRPhotoVC.m in Sources */,
+				6B03707F1731F008000F218F /* BNRInfoVC.m in Sources */,
+				6B0370841731F020000F218F /* BNRFactsVC.m in Sources */,
+				6B0370891731F1D4000F218F /* BNRDataStore.m in Sources */,
+				6B03708D1731F4B5000F218F /* BNRPhoto.m in Sources */,
+				6B0370901731F5E3000F218F /* BNRFact.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
