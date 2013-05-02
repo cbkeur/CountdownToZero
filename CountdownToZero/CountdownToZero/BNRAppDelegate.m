@@ -32,7 +32,8 @@
     UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:infoVC];
     [nc1.tabBarItem setTitle:@"Info"];
     
-    BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] init];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] initWithCollectionViewLayout: flowLayout];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:photosVC];
     [nc2.tabBarItem setTitle:@"Photos"];
     
