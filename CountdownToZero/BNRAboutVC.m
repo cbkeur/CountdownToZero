@@ -8,10 +8,16 @@
 
 #import "BNRAboutVC.h"
 
+// Views
+#import "BNRCarterButton.h"
+
 // Controllers
 #import "BNRContactVC.h"
 
-@interface BNRAboutVC ()
+@interface BNRAboutVC () <UIAlertViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIView *contentView;
 
 @end
 
@@ -39,7 +45,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [_scrollView setContentSize:_contentView.bounds.size];
+    [_scrollView addSubview:_contentView];
 }
 
 #pragma mark - Actions
@@ -48,6 +56,22 @@
 {
     BNRContactVC *contactVC = [[BNRContactVC alloc] init];
     [self.navigationController pushViewController:contactVC animated:YES];
+}
+
+- (IBAction)donate:(id)sender
+{
+    // http://donate.cartercenter.org/site/Donation2?df_id=1220&1220.donation=form1
+    [[[UIAlertView alloc] initWithTitle:@"Leaving App" message:@"This will exit the app and take you to our website in Mobile Safari. Would you like to continue?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil] show];
+}
+
+#pragma mark - Alert view delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if(buttonIndex == [alertView cancelButtonIndex])
+        return;
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://donate.cartercenter.org/site/Donation2?df_id=1220&1220.donation=form1"]];
 }
 
 @end

@@ -1,5 +1,5 @@
 //
-//  BNRContactVC.h
+//  UIColor+Carter.h
 //  CountdownToZero
 //
 //  Created by Christian Keur on 5/2/13.
@@ -8,8 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-#import "BNRBaseVC.h"
+@interface UIColor (Carter)
 
-@interface BNRContactVC : BNRBaseVC
++ (UIColor *)carterBackgroundColor;
 
 @end

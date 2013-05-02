@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BNRInfoVC : UIViewController
+#import "BNRBaseVC.h"
+
+@interface BNRInfoVC : BNRBaseVC
 
 @end

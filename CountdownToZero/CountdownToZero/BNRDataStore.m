@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Christian Keur. All rights reserved.
 //
 
-#define DUMMY_DATA
+//#define DUMMY_DATA
 
 #import "BNRDataStore.h"
 
@@ -52,7 +52,7 @@
 
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock
 {
-    int count;
+    int count = 0;
     NSError *error = nil;
 #ifdef DUMMY_DATA
     count = 6;
@@ -130,11 +130,22 @@
     }];
 #else
     
-    [BNRConnection connectionWithURLString:@"http://guinea-worm.herokuapp.com/facts"
+    [BNRConnection connectionWithURLString:@"http://guinea-worm.herokuapp.com/facts.json"
                           startImmediately:YES
                            completionBlock:^(id obj, NSError *err) {
+                               
+                               NSMutableArray *facts = [NSMutableArray array];
+                               
+                               for(NSDictionary *d in obj)
+                               {
+                                   BNRFact *fact = [[BNRFact alloc] init];
+                                   [fact setQuestion:[d objectForKey:@"question"]];
+                                   [fact setAnswer:[d objectForKey:@"answer"]];
+                                   [facts addObject:fact];
+                               }
+                               
                                if(cBlock)
-                                   cBlock(obj, err);
+                                   cBlock(facts, err);
                            }];
     
 #endif

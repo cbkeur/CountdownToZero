@@ -1,15 +1,13 @@
 //
-//  BNRFactsVC.h
+//  BNRBaseVC.h
 //  CountdownToZero
 //
-//  Created by Christian Keur on 5/1/13.
+//  Created by Christian Keur on 5/2/13.
 //  Copyright (c) 2013 Christian Keur. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-#import "BNRBaseVC.h"
-
-@interface BNRFactsVC : BNRBaseVC
+@interface BNRBaseVC : UIViewController
 
 @end
