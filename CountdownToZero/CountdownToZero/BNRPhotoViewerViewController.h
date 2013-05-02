@@ -1,5 +1,5 @@
 //
-//  BNRMediaCell.h
+//  BNRPhotoViewerViewController.h
 //  CountdownToZero
 //
 //  Created by Thomas Ward on 5/2/13.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@class BNRPhoto;
-
-@interface BNRMediaCell : UICollectionViewCell
-
-@property (nonatomic, strong) BNRPhoto *photo;
+@interface BNRPhotoViewerViewController : UIViewController
 
 @end

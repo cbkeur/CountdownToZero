@@ -33,6 +33,7 @@
     [nc1.tabBarItem setTitle:@"Info"];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
     BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] initWithCollectionViewLayout: flowLayout];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:photosVC];
     [nc2.tabBarItem setTitle:@"Photos"];
