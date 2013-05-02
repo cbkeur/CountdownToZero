@@ -36,6 +36,11 @@
 		6B0370891731F1D4000F218F /* BNRDataStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370881731F1D4000F218F /* BNRDataStore.m */; };
 		6B03708D1731F4B5000F218F /* BNRPhoto.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03708C1731F4B5000F218F /* BNRPhoto.m */; };
 		6B0370901731F5E3000F218F /* BNRFact.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03708F1731F5E3000F218F /* BNRFact.m */; };
+		6B0370941732A59F000F218F /* BNRConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0370931732A59F000F218F /* BNRConnection.m */; };
+		6B0370961732AF27000F218F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0370951732AF27000F218F /* MapKit.framework */; };
+		6B03709D1732AF7D000F218F /* BNRContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B03709B1732AF7D000F218F /* BNRContactVC.m */; };
+		6B03709E1732AF7D000F218F /* BNRContactVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6B03709C1732AF7D000F218F /* BNRContactVC.xib */; };
+		6B0370A01732B101000F218F /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03709F1732B101000F218F /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +87,13 @@
 		6B03708C1731F4B5000F218F /* BNRPhoto.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPhoto.m; sourceTree = "<group>"; };
 		6B03708E1731F5E3000F218F /* BNRFact.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRFact.h; sourceTree = "<group>"; };
 		6B03708F1731F5E3000F218F /* BNRFact.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRFact.m; sourceTree = "<group>"; };
+		6B0370921732A59F000F218F /* BNRConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRConnection.h; sourceTree = "<group>"; };
+		6B0370931732A59F000F218F /* BNRConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRConnection.m; sourceTree = "<group>"; };
+		6B0370951732AF27000F218F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		6B03709A1732AF7C000F218F /* BNRContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRContactVC.h; sourceTree = "<group>"; };
+		6B03709B1732AF7D000F218F /* BNRContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRContactVC.m; sourceTree = "<group>"; };
+		6B03709C1732AF7D000F218F /* BNRContactVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRContactVC.xib; sourceTree = "<group>"; };
+		6B03709F1732B101000F218F /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6B0370A01732B101000F218F /* CoreLocation.framework in Frameworks */,
+				6B0370961732AF27000F218F /* MapKit.framework in Frameworks */,
 				6B03703D1731D782000F218F /* UIKit.framework in Frameworks */,
 				6B03703F1731D782000F218F /* Foundation.framework in Frameworks */,
 				6B0370411731D782000F218F /* CoreGraphics.framework in Frameworks */,
@@ -118,6 +132,8 @@
 		6B03703B1731D782000F218F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6B03709F1732B101000F218F /* CoreLocation.framework */,
+				6B0370951732AF27000F218F /* MapKit.framework */,
 				6B03703C1731D782000F218F /* UIKit.framework */,
 				6B03703E1731D782000F218F /* Foundation.framework */,
 				6B0370401731D782000F218F /* CoreGraphics.framework */,
@@ -128,10 +144,11 @@
 		6B0370421731D782000F218F /* CountdownToZero */ = {
 			isa = PBXGroup;
 			children = (
+				6B0370911732A496000F218F /* Web services */,
 				6B03708A1731F4AD000F218F /* Model */,
-				6B0370861731F1B3000F218F /* Store */,
 				6B0370691731E97C000F218F /* Views */,
 				6B0370681731E977000F218F /* Controllers */,
+				6B0370861731F1B3000F218F /* Store */,
 				6B0370431731D782000F218F /* Supporting Files */,
 			);
 			path = CountdownToZero;
@@ -178,6 +195,9 @@
 				6B0370811731F020000F218F /* BNRFactsVC.h */,
 				6B0370821731F020000F218F /* BNRFactsVC.m */,
 				6B0370831731F020000F218F /* BNRFactsVC.xib */,
+				6B03709A1732AF7C000F218F /* BNRContactVC.h */,
+				6B03709B1732AF7D000F218F /* BNRContactVC.m */,
+				6B03709C1732AF7D000F218F /* BNRContactVC.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -209,6 +229,15 @@
 				6B03708F1731F5E3000F218F /* BNRFact.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		6B0370911732A496000F218F /* Web services */ = {
+			isa = PBXGroup;
+			children = (
+				6B0370921732A59F000F218F /* BNRConnection.h */,
+				6B0370931732A59F000F218F /* BNRConnection.m */,
+			);
+			name = "Web services";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,6 +306,7 @@
 				6B03707B1731EFE7000F218F /* BNRPhotoVC.xib in Resources */,
 				6B0370801731F008000F218F /* BNRInfoVC.xib in Resources */,
 				6B0370851731F020000F218F /* BNRFactsVC.xib in Resources */,
+				6B03709E1732AF7D000F218F /* BNRContactVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -299,6 +329,8 @@
 				6B0370891731F1D4000F218F /* BNRDataStore.m in Sources */,
 				6B03708D1731F4B5000F218F /* BNRPhoto.m in Sources */,
 				6B0370901731F5E3000F218F /* BNRFact.m in Sources */,
+				6B0370941732A59F000F218F /* BNRConnection.m in Sources */,
+				6B03709D1732AF7D000F218F /* BNRContactVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

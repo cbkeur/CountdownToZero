@@ -8,6 +8,10 @@
 
 #import "BNRFactsVC.h"
 
+// Model
+#import "BNRDataStore.h"
+#import "BNRFact.h"
+
 @interface BNRFactsVC ()
 
 @end
@@ -36,7 +40,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [[BNRDataStore sharedStore] getFactsWithCompletion:^(NSArray *facts, NSError *err) {
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning

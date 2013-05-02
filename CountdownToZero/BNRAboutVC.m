@@ -8,19 +8,32 @@
 
 #import "BNRAboutVC.h"
 
+// Controllers
+#import "BNRContactVC.h"
+
 @interface BNRAboutVC ()
 
 @end
 
 @implementation BNRAboutVC
 
+#pragma mark - Initializers
+
+- (id)init
+{
+    self = [super initWithNibName:nil bundle:nil];
+    
+    if(self)
+    {
+        [self.navigationItem setTitle:@"About"];
+    }
+    
+    return self;
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+    return [self init];
 }
 
 - (void)viewDidLoad
@@ -29,10 +42,12 @@
     // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - Actions
+
+- (IBAction)contactUs:(id)sender
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    BNRContactVC *contactVC = [[BNRContactVC alloc] init];
+    [self.navigationController pushViewController:contactVC animated:YES];
 }
 
 @end

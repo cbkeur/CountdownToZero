@@ -14,6 +14,9 @@
 #import "BNRPhoto.h"
 #import "BNRFact.h"
 
+// Web services
+#import "BNRConnection.h"
+
 @implementation BNRDataStore
 
 #pragma mark - Singleton
@@ -88,9 +91,10 @@
 
 - (void)getFactsWithCompletion:(void (^)(NSArray *facts, NSError *err))cBlock
 {
+#ifdef DUMMY_DATA
     NSMutableArray *facts = nil;
     NSError *error = nil;
-#ifdef DUMMY_DATA
+    
     facts = [NSMutableArray array];
     BNRFact *fact = [[BNRFact alloc] init];
     [fact setQuestion:@"What is Guinea worm disease?"];
@@ -106,12 +110,23 @@
     [fact setQuestion:@"How widespread is the problem?"];
     [fact setAnswer:@"In 1986, the disease afflicted an estimated 3.5 million people a year in 21 countries in Africa and Asia. Today, thanks to the work of The Carter Center and its partners—including the countries themselves—the incidence of Guinea worm has been reduced by more than 99 percent.\n\nGuinea worm disease incapacitates victims for extended periods of time making them unable to work or grow enough food to feed their families or attend school."];
     [facts addObject:fact];
+    
+    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+        if(cBlock)
+            cBlock(facts, error);
+    }];
 #else
+    
+    [BNRConnection connectionWithURLString:@"http://guinea-worm.herokuapp.com/facts"
+                          startImmediately:YES
+                           completionBlock:^(id obj, NSError *err) {
+                               if(cBlock)
+                                   cBlock(obj, err);
+                           }];
     
 #endif
     
-    if(cBlock)
-        cBlock(facts, error);
+    
 }
 
 
