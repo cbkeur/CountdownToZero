@@ -18,6 +18,8 @@
 		4953DBEE1732AF9A00F4F44D /* 21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBE51732AF9A00F4F44D /* 21.jpg */; };
 		4953DBF01732AFA800F4F44D /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBEF1732AFA800F4F44D /* photos.json */; };
 		4953DBF31732B57900F4F44D /* BNRMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF21732AFC900F4F44D /* BNRMediaCell.m */; };
+		4953DBF71732EC1700F4F44D /* BNRPhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */; };
+		4953DBF81732EC1700F4F44D /* BNRPhotoViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */; };
 		6B03703D1731D782000F218F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703C1731D782000F218F /* UIKit.framework */; };
 		6B03703F1731D782000F218F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703E1731D782000F218F /* Foundation.framework */; };
 		6B0370411731D782000F218F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0370401731D782000F218F /* CoreGraphics.framework */; };
@@ -67,6 +69,9 @@
 		4953DBEF1732AFA800F4F44D /* photos.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = photos.json; sourceTree = "<group>"; };
 		4953DBF11732AFC900F4F44D /* BNRMediaCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BNRMediaCell.h; sourceTree = "<group>"; };
 		4953DBF21732AFC900F4F44D /* BNRMediaCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BNRMediaCell.m; sourceTree = "<group>"; };
+		4953DBF41732EC1700F4F44D /* BNRPhotoViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPhotoViewerViewController.h; sourceTree = "<group>"; };
+		4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPhotoViewerViewController.m; sourceTree = "<group>"; };
+		4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPhotoViewerViewController.xib; sourceTree = "<group>"; };
 		6B0370391731D782000F218F /* CountdownToZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountdownToZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B03703C1731D782000F218F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6B03703E1731D782000F218F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -247,6 +252,9 @@
 				6B03709A1732AF7C000F218F /* BNRContactVC.h */,
 				6B03709B1732AF7D000F218F /* BNRContactVC.m */,
 				6B03709C1732AF7D000F218F /* BNRContactVC.xib */,
+				4953DBF41732EC1700F4F44D /* BNRPhotoViewerViewController.h */,
+				4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */,
+				4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				4953DBED1732AF9A00F4F44D /* 20.jpg in Resources */,
 				4953DBEE1732AF9A00F4F44D /* 21.jpg in Resources */,
 				4953DBF01732AFA800F4F44D /* photos.json in Resources */,
+				4953DBF81732EC1700F4F44D /* BNRPhotoViewerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -393,6 +402,7 @@
 				6B0370901731F5E3000F218F /* BNRFact.m in Sources */,
 				6B0370941732A59F000F218F /* BNRConnection.m in Sources */,
 				6B03709D1732AF7D000F218F /* BNRContactVC.m in Sources */,
+				4953DBF71732EC1700F4F44D /* BNRPhotoViewerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
