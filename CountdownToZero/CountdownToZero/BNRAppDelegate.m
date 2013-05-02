@@ -24,7 +24,7 @@
     //0, 79. 119
     
     [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0 green:79/255.0 blue:119/255.0 alpha:1]];
-    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"Baskerville" size:24]}];
+    [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"HoeflerText-Regular" size:24]}];
     
     UITabBarController *tbc = [[UITabBarController alloc] init];
     

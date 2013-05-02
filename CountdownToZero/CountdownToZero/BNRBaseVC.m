@@ -34,7 +34,7 @@
     
     UIImageView *eagleHead = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eaglehead"]];
     [eagleHead setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleRightMargin];
-    [eagleHead setAlpha:0.01];
+    [eagleHead setAlpha:0.05];
     [self.view insertSubview:eagleHead atIndex:0];
     [eagleHead setCenter:self.view.center];
 }

@@ -30,7 +30,7 @@
 
     if(self)
     {
-        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"icon"]];
+        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
         [self.navigationItem setTitleView:titleView];
 //        [self.navigationItem setTitle:@"Countdown To Zero"];
     }
