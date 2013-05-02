@@ -10,4 +10,28 @@
 
 @implementation BNRPhoto
 
+- (id)initWithJSONDictionary: (NSDictionary *)jsonDict
+{
+    self = [super init];
+    
+    if (self) {
+        [self updateWithJSONDictionary: jsonDict];
+        if (!_photoURL)
+            return nil;
+    }
+    
+    return self;
+}
+
+- (void)updateWithJSONDictionary:(NSDictionary *)jsonDict
+{
+    if (!jsonDict[@"photo"])
+        return;
+    
+    _photoURL = jsonDict[@"photo"];
+    
+    if (jsonDict[@"caption"])
+        _caption = jsonDict[@"caption"];
+}
+
 @end

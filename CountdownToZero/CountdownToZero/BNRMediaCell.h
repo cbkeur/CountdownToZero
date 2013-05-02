@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+@class BNRPhoto;
+
 @interface BNRMediaCell : UICollectionViewCell
+
+@property (nonatomic, strong) BNRPhoto *photo;
 
 @end

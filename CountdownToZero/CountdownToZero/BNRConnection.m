@@ -59,12 +59,14 @@ static NSMutableArray *sharedConnectionList = nil;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {    
     NSError *err = nil;
-    id jsonObj = [NSJSONSerialization JSONObjectWithData:container options:0 error:&err];
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:container options: NSJSONReadingAllowFragments error:&err];
     
     if([self completionBlock])
     {
         if(jsonObj)
             [self completionBlock](jsonObj, nil);
+        else if ([err code] == 3840)
+            [self completionBlock](container, nil);
         else
             [self completionBlock](nil, err);
     }

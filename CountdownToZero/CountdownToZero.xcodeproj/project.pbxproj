@@ -17,6 +17,7 @@
 		4953DBED1732AF9A00F4F44D /* 20.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBE41732AF9A00F4F44D /* 20.jpg */; };
 		4953DBEE1732AF9A00F4F44D /* 21.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBE51732AF9A00F4F44D /* 21.jpg */; };
 		4953DBF01732AFA800F4F44D /* photos.json in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBEF1732AFA800F4F44D /* photos.json */; };
+		4953DBF31732B57900F4F44D /* BNRMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF21732AFC900F4F44D /* BNRMediaCell.m */; };
 		6B03703D1731D782000F218F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703C1731D782000F218F /* UIKit.framework */; };
 		6B03703F1731D782000F218F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703E1731D782000F218F /* Foundation.framework */; };
 		6B0370411731D782000F218F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0370401731D782000F218F /* CoreGraphics.framework */; };
@@ -377,6 +378,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4953DBF31732B57900F4F44D /* BNRMediaCell.m in Sources */,
 				6B0370491731D782000F218F /* main.m in Sources */,
 				6B03704D1731D782000F218F /* BNRAppDelegate.m in Sources */,
 				6B03705C1731DEBB000F218F /* BNRHomeVC.m in Sources */,

@@ -71,13 +71,18 @@
     NSMutableArray *photos = nil;
     NSError *error = nil;
 #ifdef DUMMY_DATA
-    photos = [NSMutableArray array];
-    for(int i = 0; i < 20; i++)
-    {
-        BNRPhoto *photo = [[BNRPhoto alloc] init];
-        [photo setCaption:@"Hello world"];
-        [photo setPhotoURL:@"http://www.traveljournals.net/img/1x1transp.png"];
-        [photos addObject:photo];
+    NSData *jsonData = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"photos" ofType: @"json"]];
+    id jsonObj = [NSJSONSerialization JSONObjectWithData: jsonData options: NSJSONReadingAllowFragments error: &error];
+    
+    if ([jsonObj isKindOfClass: [NSArray class]]) {
+        photos = [NSMutableArray array];
+        for (NSDictionary *jsonDict in jsonObj) {
+            BNRPhoto *photo = [[BNRPhoto alloc] initWithJSONDictionary: jsonDict];
+            
+            if (photo) {
+                [photos addObject: photo];
+            }
+        }
     }
 #else
     
@@ -85,6 +90,14 @@
     
     if(cBlock)
         cBlock(photos, error);
+}
+
+- (void)getPhoto: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock
+{
+    if (![photo photoURL])
+        return;
+    
+    [BNRConnection connectionWithURLString: [photo photoURL] startImmediately: YES completionBlock: cBlock];
 }
 
 #pragma mark - Facts

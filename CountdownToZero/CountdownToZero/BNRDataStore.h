@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class BNRPhoto;
+
 @interface BNRDataStore : NSObject
 
 + (BNRDataStore *)sharedStore;
@@ -18,6 +20,7 @@
 
 // Photos
 - (void)getPhotoListWithCompletion:(void (^)(NSArray *photos, NSError *err))cBlock;
+- (void)getPhoto: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock;
 
 // Facts
 - (void)getFactsWithCompletion:(void (^)(NSArray *facts, NSError *err))cBlock;

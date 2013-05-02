@@ -7,8 +7,16 @@
 //
 
 #import "BNRPhotoVC.h"
+#import "BNRMediaCell.h"
+#import "BNRPhoto.h"
+#import "BNRDataStore.h"
+
+#define PHOTO_CELL @"PHOTO_CELL"
 
 @interface BNRPhotoVC ()
+{
+    NSArray *_photoArray;
+}
 
 @end
 
@@ -33,16 +41,39 @@
     return [self init];
 }
 
+#pragma mark - View Heirarchy
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    [[self collectionView] registerClass: [BNRMediaCell class] forCellWithReuseIdentifier: PHOTO_CELL];
+    
+    // Load media
+    [[BNRDataStore sharedStore] getPhotoListWithCompletion: ^(NSArray *photos, NSError *err) {
+        if (photos) {
+            _photoArray = [photos copy];
+        }
+    }];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - UICollectionView DataSource Methods
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSLog(@"PhotoCount: %d", [_photoArray count]);
+    return [_photoArray count];
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    BNRMediaCell *cell = [[self collectionView] dequeueReusableCellWithReuseIdentifier: PHOTO_CELL forIndexPath: indexPath];
+    
+    if (!cell) {
+        cell = [[BNRMediaCell alloc] init];
+    }
+    cell.photo = _photoArray[indexPath.row];
+    return cell;
 }
 
 @end
