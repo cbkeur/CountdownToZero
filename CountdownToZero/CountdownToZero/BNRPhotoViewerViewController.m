@@ -70,6 +70,7 @@
         [_photoImageView setImage: [_photo photo]];
     else {
         [_activityIndicatorView startAnimating];
+        [_photoImageView setImage: [_photo thumbnail]];
         UIActivityIndicatorView * __weak activityIndicatorView = _activityIndicatorView;
         UIImageView * __weak imageView = _photoImageView;
         BNRPhoto * __weak photo = _photo;

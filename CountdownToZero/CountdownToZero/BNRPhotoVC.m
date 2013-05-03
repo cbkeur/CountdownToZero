@@ -21,8 +21,6 @@
     BNRMediaCell *_hiddenCell;
 }
 
-- (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture;
-
 @end
 
 @implementation BNRPhotoVC
@@ -101,6 +99,17 @@
     [_photoViewerViewController setDelegate: self];
     [_hiddenCell setHidden: YES];
     [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
+}
+
+// TODO: Figure out how the menu thing works.
+- (BOOL)collectionView:(UICollectionView *)collectionView canPerformAction:(SEL)action forItemAtIndexPath:(NSIndexPath *)indexPath withSender:(id)sender
+{
+    return YES;
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView shouldShowMenuForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
 }
 
 #pragma mark - BNRPhotoViewerViewController
