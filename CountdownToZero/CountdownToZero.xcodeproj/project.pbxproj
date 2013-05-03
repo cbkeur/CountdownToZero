@@ -63,7 +63,7 @@
 		6BE840BB173313DC00B206EA /* jimmy-rosalynn-carter.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6BE840BA173313DC00B206EA /* jimmy-rosalynn-carter.jpg */; };
 		6BE840BE1734055500B206EA /* BNRGuineaGraph.m in Sources */ = {isa = PBXBuildFile; fileRef = 6BE840BD1734055500B206EA /* BNRGuineaGraph.m */; };
 		6BE840C917340F0D00B206EA /* closeBtn.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE840C717340F0D00B206EA /* closeBtn.png */; };
-		6BE840CA17340F0D00B206EA /* clsoeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE840C817340F0D00B206EA /* clsoeBtn@2x.png */; };
+		6BE840CA17340F0D00B206EA /* closeBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6BE840C817340F0D00B206EA /* closeBtn@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -150,7 +150,7 @@
 		6BE840BC1734055500B206EA /* BNRGuineaGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRGuineaGraph.h; sourceTree = "<group>"; };
 		6BE840BD1734055500B206EA /* BNRGuineaGraph.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRGuineaGraph.m; sourceTree = "<group>"; };
 		6BE840C717340F0D00B206EA /* closeBtn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeBtn.png; sourceTree = "<group>"; };
-		6BE840C817340F0D00B206EA /* clsoeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "clsoeBtn@2x.png"; sourceTree = "<group>"; };
+		6BE840C817340F0D00B206EA /* closeBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "closeBtn@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -228,7 +228,7 @@
 				6B03705E1731E2B1000F218F /* Chad.jpg */,
 				6BE840BA173313DC00B206EA /* jimmy-rosalynn-carter.jpg */,
 				6BE840C717340F0D00B206EA /* closeBtn.png */,
-				6BE840C817340F0D00B206EA /* clsoeBtn@2x.png */,
+				6BE840C817340F0D00B206EA /* closeBtn@2x.png */,
 				6BE840B01732F25A00B206EA /* icon@2x.png */,
 				6BE840B21732F27E00B206EA /* icon.png */,
 				6BDF1C111732BF5D00B0C343 /* annot_view.png */,
@@ -433,7 +433,7 @@
 				6BE840B31732F27E00B206EA /* icon.png in Resources */,
 				6BE840BB173313DC00B206EA /* jimmy-rosalynn-carter.jpg in Resources */,
 				6BE840C917340F0D00B206EA /* closeBtn.png in Resources */,
-				6BE840CA17340F0D00B206EA /* clsoeBtn@2x.png in Resources */,
+				6BE840CA17340F0D00B206EA /* closeBtn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
