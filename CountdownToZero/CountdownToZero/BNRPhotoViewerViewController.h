@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+@class BNRPhoto;
+@class BNRPhotoViewerViewController;
+
+@protocol BNRPhotoViewerDelegate <NSObject>
+
+- (void)photoViewerDidFinish: (BNRPhotoViewerViewController *)photoViewer;
+
+@end
+
 @interface BNRPhotoViewerViewController : UIViewController
+
+@property (nonatomic, weak) id<BNRPhotoViewerDelegate> delegate;
+
+- (id)initWithPhoto: (BNRPhoto *)photo andPhotoFrame: (CGRect)frame;
 
 @end
