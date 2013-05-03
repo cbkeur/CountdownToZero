@@ -32,7 +32,7 @@
         _questionLabel = questionLabel;
         
         
-        CGRect webFrame = CGRectMake(20, 80, frame.size.width - 40, frame.size.height - 50 - 20 - 10);
+        CGRect webFrame = CGRectMake(20, 80, frame.size.width - 40, frame.size.height - 50 - 20 - 10 - 25);
         UIWebView *webView = [[UIWebView alloc] initWithFrame:webFrame];
         [webView setBackgroundColor:[UIColor clearColor]];
         [webView setOpaque:NO];
@@ -63,5 +63,10 @@
 {
     [_webView loadHTMLString:str baseURL:nil];
 }
+
+//- (void)drawRect:(CGRect)rect
+//{
+//    
+//}
 
 @end
