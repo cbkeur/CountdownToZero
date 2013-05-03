@@ -45,23 +45,23 @@
 {
     _photo = photo;
     
-    if ([photo photo]) {
-        _image = [photo photo];
+    if ([photo thumbnail]) {
+        _image = [photo thumbnail];
         [_activityIndicatorView stopAnimating];
     }
     else {
         _image = nil;
-        if ([photo photoURL]) {
+        if ([photo thumbnailURL]) {
             [_activityIndicatorView startAnimating];
             UIActivityIndicatorView * __weak activityIndicatorView = _activityIndicatorView;
             UIImageView * __weak imageView = _photoImageView;
-            [[BNRDataStore sharedStore] getPhoto: photo WithCompletion: ^(NSData *data, NSError *err) {
+            [[BNRDataStore sharedStore] getPhotoThumbnail: photo WithCompletion: ^(NSData *data, NSError *err) {
                 if (data) {
                     [activityIndicatorView stopAnimating];
                     UIImage *image = [UIImage imageWithData: data];
                     if (image) {
                         [imageView setImage: image];
-                        [photo setPhoto: image];
+                        [photo setThumbnail: image];
                     }
                 }
             }];
