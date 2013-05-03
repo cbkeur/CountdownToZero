@@ -52,11 +52,11 @@
                                                                                            action: @selector(handleTapGesture:)];
     [tapGestureRecognizer setNumberOfTapsRequired: 1];
     [tapGestureRecognizer setDelaysTouchesEnded: YES];
-    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                                 action: @selector(handleTapGesture:)];
-    [doubleTapGestureRecognizer setNumberOfTapsRequired: 2];
+//    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
+//                                                                                                 action: @selector(handleTapGesture:)];
+//    [doubleTapGestureRecognizer setNumberOfTapsRequired: 2];
     [[self view] addGestureRecognizer: tapGestureRecognizer];
-    [[self view] addGestureRecognizer: doubleTapGestureRecognizer];
+//    [[self view] addGestureRecognizer: doubleTapGestureRecognizer];
     
     [_imageCellView setFrame: _startFrame];
     [_imageCellView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
@@ -128,35 +128,42 @@
     
 }
 
+#pragma mark - Actions
+
+- (IBAction)close:(id)sender
+{
+    [_captionTextView setHidden: YES];
+    [_closeButton setHidden: YES];
+    
+    // Start animation
+    UIView * __weak imageCellView = _imageCellView;
+    UIView * __weak backgroundView = _backgroundView;
+    UIScrollView * __weak scrollView = _scrollView;
+    
+    [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
+        [scrollView setZoomScale: 1.0f];
+        [backgroundView setAlpha: 0.0f];
+        [imageCellView setFrame: _startFrame];
+    }
+                     completion: ^(BOOL finished) {
+                         if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
+                             [_delegate photoViewerDidFinish: self];
+                         }
+                         else {
+                             [[self view] removeFromSuperview];
+                         }
+                     }];
+}
+
 #pragma mark - Tap GestureRecognizer Handler
 
 - (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture
 {
-    if ([tapGesture numberOfTapsRequired] == 2) {
-        [_captionTextView setHidden: YES];
+    float finalAlpha = (_captionTextView.alpha == 0) ? 1 : 0;
 
-        // Start animation
-        UIView * __weak imageCellView = _imageCellView;
-        UIView * __weak backgroundView = _backgroundView;
-        UIScrollView * __weak scrollView = _scrollView;
-        
-        [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
-            [scrollView setZoomScale: 1.0f];
-            [backgroundView setAlpha: 0.0f];
-            [imageCellView setFrame: _startFrame];
-        }
-                         completion: ^(BOOL finished) {
-                             if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
-                                 [_delegate photoViewerDidFinish: self];
-                             }
-                             else {
-                                 [[self view] removeFromSuperview];
-                             }
-                         }];
-        
-    }
-    else
-        [_captionTextView setHidden: ![_captionTextView isHidden]];
+    [UIView animateWithDuration:0.1 animations:^{
+        [_captionTextView setAlpha:finalAlpha];
+    }];
 }
 
 #pragma mark - UIScrollViewDelegate

@@ -23,14 +23,13 @@
 
     //0, 79. 119
     
-    [[UINavigationBar appearance] setTintColor:[UIColor colorWithRed:0 green:79/255.0 blue:119/255.0 alpha:1]];
+    UIColor *blueColor = [UIColor colorWithRed:0 green:79/255.0 blue:119/255.0 alpha:1];
+    
+    [[UINavigationBar appearance] setTintColor:blueColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"HoeflerText-Regular" size:24]}];
     
     UITabBarController *tbc = [[UITabBarController alloc] init];
-    
-    BNRInfoVC *infoVC = [[BNRInfoVC alloc] init];
-    UINavigationController *nc1 = [[UINavigationController alloc] initWithRootViewController:infoVC];
-    [nc1.tabBarItem setTitle:@"Info"];
+    [[tbc tabBar] setTintColor:blueColor];
     
     UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
     [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
@@ -50,8 +49,7 @@
     UINavigationController *nc5 = [[UINavigationController alloc] initWithRootViewController:aboutVC];
     [nc5.tabBarItem setTitle:@"About"];
     
-    [tbc setViewControllers:@[nc1, nc2, nc3, nc4, nc5]];
-    [tbc setSelectedIndex:2];
+    [tbc setViewControllers:@[nc3, nc2, nc4, nc5]];
     
     [self.window setRootViewController:tbc];
     
