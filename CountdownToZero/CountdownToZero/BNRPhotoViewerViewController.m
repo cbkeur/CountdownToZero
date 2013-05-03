@@ -10,14 +10,17 @@
 #import "BNRPhoto.h"
 #import "BNRDataStore.h"
 
-@interface BNRPhotoViewerViewController () <UIScrollViewDelegate>
+@interface BNRPhotoViewerViewController () <UIScrollViewDelegate, UIWebViewDelegate>
 {
-    IBOutlet UIView *_backgroundView;
-    IBOutlet UIView *_imageCellView;
-    IBOutlet UIImageView *_photoImageView;
-    IBOutlet UITextView *_captionTextView;
-    IBOutlet UIScrollView *_scrollView;
-    IBOutlet UIActivityIndicatorView *_activityIndicatorView;
+    __weak IBOutlet UIView *_backgroundView;
+    __weak IBOutlet UIView *_captionBackgroundView;
+    __weak IBOutlet UIView *_captionBackgroundView2;
+    __weak IBOutlet UIView *_imageCellView;
+    __weak IBOutlet UIImageView *_photoImageView;
+    __weak IBOutlet UIWebView *_captionTextView;
+    __weak IBOutlet UIScrollView *_scrollView;
+    __weak IBOutlet UIButton *_closeButton;
+    UIActivityIndicatorView *_activityIndicatorView;
     
     BNRPhoto *_photo;
     CGRect _startFrame;
@@ -52,11 +55,7 @@
                                                                                            action: @selector(handleTapGesture:)];
     [tapGestureRecognizer setNumberOfTapsRequired: 1];
     [tapGestureRecognizer setDelaysTouchesEnded: YES];
-//    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
-//                                                                                                 action: @selector(handleTapGesture:)];
-//    [doubleTapGestureRecognizer setNumberOfTapsRequired: 2];
     [[self view] addGestureRecognizer: tapGestureRecognizer];
-//    [[self view] addGestureRecognizer: doubleTapGestureRecognizer];
     
     [_imageCellView setFrame: _startFrame];
     [_imageCellView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
@@ -88,8 +87,11 @@
 
 
     [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
-    [_captionTextView setText: [_photo caption]];
+    [_captionTextView loadHTMLString: [_photo caption] baseURL: [NSURL URLWithString: @"/"]];
     [_captionTextView setHidden: YES];
+    
+    [_captionBackgroundView2 setHidden: YES];
+    [_captionBackgroundView2 setAlpha: 0.8f];
     
     CGPoint centerPoint = [[self view] center];
     CGSize viewSize = [[self view] frame].size;
@@ -109,23 +111,14 @@
     }
 
     // Start animation
-    UITextView * __weak captionTextView = _captionTextView;
-    UIView * __weak imageCellView = _imageCellView;
-    UIView * __weak backgroundView = _backgroundView;
     [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
-        [backgroundView setAlpha: 0.8f];
-        [imageCellView setFrame: newFrame];
+        [_backgroundView setAlpha: 0.8f];
+        [_imageCellView setFrame: newFrame];
+        [_captionBackgroundView setAlpha: 0.8f];
     }
                      completion: ^(BOOL finished) {
-                         [captionTextView setHidden: NO];
+                         [_captionTextView setHidden: NO];
                      }];
-}
-
-- (void)viewDidAppear: (BOOL)animated
-{
-    [super viewDidAppear: animated];
-    
-    
 }
 
 #pragma mark - Actions
@@ -136,14 +129,12 @@
     [_closeButton setHidden: YES];
     
     // Start animation
-    UIView * __weak imageCellView = _imageCellView;
-    UIView * __weak backgroundView = _backgroundView;
-    UIScrollView * __weak scrollView = _scrollView;
-    
     [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
-        [scrollView setZoomScale: 1.0f];
-        [backgroundView setAlpha: 0.0f];
-        [imageCellView setFrame: _startFrame];
+        [_scrollView setZoomScale: 1.0f];
+        [_backgroundView setAlpha: 0.0f];
+        [_imageCellView setFrame: _startFrame];
+        [_captionBackgroundView setAlpha: 0.0f];
+        [_captionBackgroundView2 setAlpha: 0.0f];
     }
                      completion: ^(BOOL finished) {
                          if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
@@ -160,9 +151,14 @@
 - (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture
 {
     float finalAlpha = (_captionTextView.alpha == 0) ? 1 : 0;
-
+    
+    [_captionBackgroundView2 setHidden: [_captionBackgroundView isHidden]];
+    [_captionBackgroundView setHidden: ![_captionBackgroundView2 isHidden]];
+    
     [UIView animateWithDuration:0.1 animations:^{
         [_captionTextView setAlpha:finalAlpha];
+        //[_captionBackgroundView setAlpha: finalBackgroundAlpha];
+        //[_captionBackgroundView2 setAlpha: finalBackgroundAlpha2];
     }];
 }
 

@@ -31,10 +31,20 @@
     _photoURL = jsonDict[@"picture"];
     
     if (jsonDict[@"caption"])
-        _caption = jsonDict[@"caption"];
+        [self setCaption: jsonDict[@"caption"]];
     
     if (jsonDict[@"thumbnail"])
         _thumbnailURL = jsonDict[@"thumbnail"];
+}
+
+- (void)setCaption:(NSString *)caption
+{
+    NSString *newCaption = nil;
+    if (caption) {
+        newCaption = [caption stringByReplacingOccurrencesOfString: @"<div "
+                                                        withString: @"<div style=\"color:white;font-size:10px;font-family:\"Times New Roman\", Times, serif;\" "];
+    }
+    _caption = newCaption;
 }
 
 @end
