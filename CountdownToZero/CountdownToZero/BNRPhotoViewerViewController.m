@@ -9,13 +9,13 @@
 #import "BNRPhotoViewerViewController.h"
 #import "BNRPhoto.h"
 
-@interface BNRPhotoViewerViewController ()
+@interface BNRPhotoViewerViewController () <UIScrollViewDelegate>
 {
     IBOutlet UIView *_backgroundView;
     IBOutlet UIView *_imageCellView;
     IBOutlet UIImageView *_photoImageView;
     IBOutlet UITextView *_captionTextView;
-    
+    IBOutlet UIScrollView *_scrollView;
     BNRPhoto *_photo;
     CGRect _startFrame;
 }
@@ -47,7 +47,13 @@
     
     UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
                                                                                            action: @selector(handleTapGesture:)];
+    [tapGestureRecognizer setNumberOfTapsRequired: 1];
+    [tapGestureRecognizer setDelaysTouchesEnded: YES];
+    UITapGestureRecognizer *doubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                                 action: @selector(handleTapGesture:)];
+    [doubleTapGestureRecognizer setNumberOfTapsRequired: 2];
     [[self view] addGestureRecognizer: tapGestureRecognizer];
+    [[self view] addGestureRecognizer: doubleTapGestureRecognizer];
     
     [_imageCellView setFrame: _startFrame];
     [_imageCellView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
@@ -72,19 +78,16 @@
         newFrame.origin.y = 5.0f;
         newFrame.origin.x = centerPoint.x - (newFrame.size.width / 2.0f);
     }
-    
-    NSLog(@"NewFrame: %@", NSStringFromCGRect(newFrame));
+
     // Start animation
     UITextView * __weak captionTextView = _captionTextView;
     UIView * __weak imageCellView = _imageCellView;
     UIView * __weak backgroundView = _backgroundView;
     [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
-        NSLog(@"Animating");
         [backgroundView setAlpha: 0.8f];
         [imageCellView setFrame: newFrame];
     }
                      completion: ^(BOOL finished) {
-                         NSLog(@"Finished: %@", finished ? @"YES" : @"NO");
                          [captionTextView setHidden: NO];
                      }];
 }
@@ -100,25 +103,38 @@
 
 - (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture
 {
-    [_captionTextView setHidden: YES];
-    // Start animation
-    UIView * __weak imageCellView = _imageCellView;
-    UIView * __weak backgroundView = _backgroundView;
-    [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
-        NSLog(@"Animating");
-        [backgroundView setAlpha: 0.0f];
-        [imageCellView setFrame: _startFrame];
+    if ([tapGesture numberOfTapsRequired] == 2) {
+        [_captionTextView setHidden: YES];
+
+        // Start animation
+        UIView * __weak imageCellView = _imageCellView;
+        UIView * __weak backgroundView = _backgroundView;
+        UIScrollView * __weak scrollView = _scrollView;
+        
+        [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
+            [scrollView setZoomScale: 1.0f];
+            [backgroundView setAlpha: 0.0f];
+            [imageCellView setFrame: _startFrame];
+        }
+                         completion: ^(BOOL finished) {
+                             if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
+                                 [_delegate photoViewerDidFinish: self];
+                             }
+                             else {
+                                 [[self view] removeFromSuperview];
+                             }
+                         }];
+        
     }
-                     completion: ^(BOOL finished) {
-                         NSLog(@"Finished: %@", finished ? @"YES" : @"NO");
-                         if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
-                             [_delegate photoViewerDidFinish: self];
-                         }
-                         else {
-                             [[self view] removeFromSuperview];
-                         }
-                     }];
-    
+    else
+        [_captionTextView setHidden: ![_captionTextView isHidden]];
+}
+
+#pragma mark - UIScrollViewDelegate
+
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{
+    return _imageCellView;
 }
 
 @end
