@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Christian Keur. All rights reserved.
 //
 
-//#define DUMMY_DATA
+#define DUMMY_DATA
 
 #import "BNRDataStore.h"
 
