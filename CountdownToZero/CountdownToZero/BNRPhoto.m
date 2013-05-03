@@ -25,13 +25,16 @@
 
 - (void)updateWithJSONDictionary:(NSDictionary *)jsonDict
 {
-    if (!jsonDict[@"photo"])
+    if (!jsonDict[@"picture"])
         return;
     
-    _photoURL = jsonDict[@"photo"];
+    _photoURL = jsonDict[@"picture"];
     
     if (jsonDict[@"caption"])
         _caption = jsonDict[@"caption"];
+    
+    if (jsonDict[@"thumbnail"])
+        _thumbnailURL = jsonDict[@"thumbnail"];
 }
 
 @end

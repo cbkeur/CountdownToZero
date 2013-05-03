@@ -8,6 +8,7 @@
 
 #import "BNRPhotoViewerViewController.h"
 #import "BNRPhoto.h"
+#import "BNRDataStore.h"
 
 @interface BNRPhotoViewerViewController () <UIScrollViewDelegate>
 {
@@ -16,6 +17,8 @@
     IBOutlet UIImageView *_photoImageView;
     IBOutlet UITextView *_captionTextView;
     IBOutlet UIScrollView *_scrollView;
+    IBOutlet UIActivityIndicatorView *_activityIndicatorView;
+    
     BNRPhoto *_photo;
     CGRect _startFrame;
 }
@@ -57,7 +60,32 @@
     
     [_imageCellView setFrame: _startFrame];
     [_imageCellView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
-    [_photoImageView setImage: [_photo photo]];
+    
+    _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame: [_imageCellView bounds]];
+    [_activityIndicatorView setHidesWhenStopped: YES];
+    [_activityIndicatorView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
+    [_imageCellView addSubview: _activityIndicatorView];
+    
+    if ([_photo photo])
+        [_photoImageView setImage: [_photo photo]];
+    else {
+        [_activityIndicatorView startAnimating];
+        UIActivityIndicatorView * __weak activityIndicatorView = _activityIndicatorView;
+        UIImageView * __weak imageView = _photoImageView;
+        BNRPhoto * __weak photo = _photo;
+        [[BNRDataStore sharedStore] getPhoto: photo WithCompletion: ^(NSData *data, NSError *err) {
+            if (data) {
+                [activityIndicatorView stopAnimating];
+                UIImage *image = [UIImage imageWithData: data];
+                if (image) {
+                    [imageView setImage: image];
+                    [photo setPhoto: image];
+                }
+            }
+        }];
+    }
+
+
     [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
     [_captionTextView setText: [_photo caption]];
     [_captionTextView setHidden: YES];

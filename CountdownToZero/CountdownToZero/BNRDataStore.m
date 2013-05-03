@@ -6,7 +6,7 @@
 //  Copyright (c) 2013 Christian Keur. All rights reserved.
 //
 
-#define DUMMY_DATA
+//#define DUMMY_DATA
 
 #import "BNRDataStore.h"
 
@@ -68,9 +68,10 @@
 
 - (void)getPhotoListWithCompletion:(void (^)(NSArray *photos, NSError *err))cBlock
 {
+#ifdef DUMMY_DATA
     NSMutableArray *photos = nil;
     NSError *error = nil;
-#ifdef DUMMY_DATA
+
     NSData *jsonData = [NSData dataWithContentsOfFile: [[NSBundle mainBundle] pathForResource: @"photos" ofType: @"json"]];
     id jsonObj = [NSJSONSerialization JSONObjectWithData: jsonData options: NSJSONReadingAllowFragments error: &error];
     
@@ -84,12 +85,29 @@
             }
         }
     }
-#else
-    
-#endif
     
     if(cBlock)
         cBlock(photos, error);
+#else
+    [BNRConnection connectionWithURLString: @"http://guinea-worm.herokuapp.com/pictures.json"
+                          startImmediately: YES
+                           completionBlock: ^(id jsonObj, NSError *err) {
+                               NSMutableArray *photos = [NSMutableArray array];
+                               if ([jsonObj isKindOfClass: [NSArray class]]) {
+                                   for (NSDictionary *jsonDict in jsonObj) {
+                                       BNRPhoto *photo = [[BNRPhoto alloc] initWithJSONDictionary: jsonDict];
+                                       
+                                       if (photo) {
+                                           [photos addObject: photo];
+                                       }
+                                   }
+                               }
+                               
+                               if(cBlock)
+                                   cBlock(photos, err);
+                           }];
+#endif
+
 }
 
 - (void)getPhoto: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock
@@ -98,6 +116,14 @@
         return;
     
     [BNRConnection connectionWithURLString: [photo photoURL] startImmediately: YES completionBlock: cBlock];
+}
+
+- (void)getPhotoThumbnail: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock
+{
+    if (![photo thumbnailURL])
+        return;
+    
+    [BNRConnection connectionWithURLString: [photo thumbnailURL] startImmediately: YES completionBlock: cBlock];
 }
 
 #pragma mark - Facts

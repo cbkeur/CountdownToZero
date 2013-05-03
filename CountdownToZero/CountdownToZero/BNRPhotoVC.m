@@ -65,12 +65,9 @@
     [[BNRDataStore sharedStore] getPhotoListWithCompletion: ^(NSArray *photos, NSError *err) {
         if (photos) {
             _photoArray = [photos copy];
+            [[self collectionView] reloadData];
         }
     }];
-    
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                 action: @selector(handleTapGesture:)];
-    [[self collectionView] addGestureRecognizer: tapGesture];
 }
 
 #pragma mark - UICollectionView DataSource Methods
@@ -92,25 +89,18 @@
     return cell;
 }
 
-#pragma mark - Gesture Recognizer Methods
+#pragma mark - UICollectionView Delegate Methods
 
-- (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGPoint tapPoint = [tapGesture locationInView: [self collectionView]];
-    NSIndexPath *tapIndexPath = [[self collectionView] indexPathForItemAtPoint: tapPoint];
+    _hiddenCell = (BNRMediaCell *)[[self collectionView] cellForItemAtIndexPath: indexPath];
     
-    if (tapIndexPath) {
-        _hiddenCell = (BNRMediaCell *)[[self collectionView] cellForItemAtIndexPath: tapIndexPath];
-        CGFloat navHeight = [[[self navigationController] navigationBar] frame].size.height;
-       
-        CGRect photoFrame = [_hiddenCell frame];
-        photoFrame.origin.y += navHeight + 20.0f;
-        _photoViewerViewController = [[BNRPhotoViewerViewController alloc] initWithPhoto: [_hiddenCell photo]
-                                                                           andPhotoFrame: photoFrame];
-        [_photoViewerViewController setDelegate: self];
-        [_hiddenCell setHidden: YES];
-        [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
-    }
+    CGRect photoFrame = [[self collectionView] convertRect: [_hiddenCell frame] toView: nil];
+    _photoViewerViewController = [[BNRPhotoViewerViewController alloc] initWithPhoto: [_hiddenCell photo]
+                                                                       andPhotoFrame: photoFrame];
+    [_photoViewerViewController setDelegate: self];
+    [_hiddenCell setHidden: YES];
+    [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
 }
 
 #pragma mark - BNRPhotoViewerViewController
@@ -122,6 +112,5 @@
     [_hiddenCell setHidden: NO];
     _hiddenCell = nil;
 }
-
 
 @end

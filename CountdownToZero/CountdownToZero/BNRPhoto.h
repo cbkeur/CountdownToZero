@@ -12,6 +12,8 @@
 
 @property (copy, nonatomic) NSString *photoURL;
 @property (copy, nonatomic) NSString *caption;
+@property (copy, nonatomic) NSString *thumbnailURL;
+@property (copy, nonatomic) UIImage *thumbnail;
 @property (nonatomic, strong) UIImage *photo;
 
 - (id)initWithJSONDictionary: (NSDictionary *)jsonDict;
