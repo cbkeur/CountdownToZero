@@ -122,6 +122,28 @@
 
 }
 
+- (void)getInfographicListWithCompletion:(void (^)(NSArray *infographics, NSError *err))cBlock
+{
+    [BNRConnection connectionWithURLString: @"http://guinea-worm.herokuapp.com/infographics.json"
+                          startImmediately: YES
+                           completionBlock: ^(id jsonObj, NSError *err) {
+                               NSMutableArray *infoGraphics = [NSMutableArray array];
+                               if ([jsonObj isKindOfClass: [NSArray class]]) {
+                                   for (NSDictionary *jsonDict in jsonObj) {
+                                       BNRPhoto *infographic = [[BNRPhoto alloc] initWithJSONDictionary: jsonDict];
+                                       
+                                       if (infographic) {
+                                           [infoGraphics addObject: infographic];
+                                       }
+                                   }
+                               }
+                               
+                               if(cBlock)
+                                   cBlock(infoGraphics, err);
+                           }];
+}
+
+
 - (void)getPhoto: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock
 {
     if (![photo photoURL])

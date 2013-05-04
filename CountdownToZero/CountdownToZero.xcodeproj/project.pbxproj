@@ -11,6 +11,7 @@
 		4953DBF31732B57900F4F44D /* BNRMediaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF21732AFC900F4F44D /* BNRMediaCell.m */; };
 		4953DBF71732EC1700F4F44D /* BNRPhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */; };
 		4953DBF81732EC1700F4F44D /* BNRPhotoViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */; };
+		4953DBFB1734ADEB00F4F44D /* BNRSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBFA1734ADEB00F4F44D /* BNRSectionHeader.m */; };
 		6B03703D1731D782000F218F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703C1731D782000F218F /* UIKit.framework */; };
 		6B03703F1731D782000F218F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703E1731D782000F218F /* Foundation.framework */; };
 		6B0370411731D782000F218F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0370401731D782000F218F /* CoreGraphics.framework */; };
@@ -83,6 +84,8 @@
 		4953DBF41732EC1700F4F44D /* BNRPhotoViewerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRPhotoViewerViewController.h; sourceTree = "<group>"; };
 		4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRPhotoViewerViewController.m; sourceTree = "<group>"; };
 		4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPhotoViewerViewController.xib; sourceTree = "<group>"; };
+		4953DBF91734ADEB00F4F44D /* BNRSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRSectionHeader.h; sourceTree = "<group>"; };
+		4953DBFA1734ADEB00F4F44D /* BNRSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRSectionHeader.m; sourceTree = "<group>"; };
 		6B0370391731D782000F218F /* CountdownToZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountdownToZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B03703C1731D782000F218F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6B03703E1731D782000F218F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -314,6 +317,8 @@
 				6BE840B81733074100B206EA /* BNRPageControl.m */,
 				6BE840BC1734055500B206EA /* BNRGuineaGraph.h */,
 				6BE840BD1734055500B206EA /* BNRGuineaGraph.m */,
+				4953DBF91734ADEB00F4F44D /* BNRSectionHeader.h */,
+				4953DBFA1734ADEB00F4F44D /* BNRSectionHeader.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -523,6 +528,7 @@
 				6BE840B61732FB1100B206EA /* BNRFactPage.m in Sources */,
 				6BE840B91733074100B206EA /* BNRPageControl.m in Sources */,
 				6BE840BE1734055500B206EA /* BNRGuineaGraph.m in Sources */,
+				4953DBFB1734ADEB00F4F44D /* BNRSectionHeader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

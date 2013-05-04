@@ -20,6 +20,7 @@
 
 // Photos
 - (void)getPhotoListWithCompletion:(void (^)(NSArray *photos, NSError *err))cBlock;
+- (void)getInfographicListWithCompletion:(void (^)(NSArray *infographics, NSError *err))cBlock;
 - (void)getPhoto: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock;
 - (void)getPhotoThumbnail: (BNRPhoto *)photo WithCompletion: (void (^)(NSData *photoData, NSError *err))cBlock;
 
