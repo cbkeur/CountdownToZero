@@ -52,16 +52,28 @@
 
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock
 {
-    int count = 0;
     NSError *error = nil;
 #ifdef DUMMY_DATA
+    int count = 0;
     count = 6;
-#else
-    
-#endif
     
     if(cBlock)
         cBlock(count, error);
+#else
+    [BNRConnection connectionWithURLString: @"http://guinea-worm.herokuapp.com/countdowns.json"
+                          startImmediately: YES
+                           completionBlock: ^(id jsonObj, NSError *err) {
+                               int count = 0;
+                               if ([jsonObj isKindOfClass: [NSDictionary class]]) {
+                                   if (jsonObj[@"total_cases"] && [jsonObj[@"total_cases"] isKindOfClass: [NSString class]]) {
+                                       count = [(NSString *)jsonObj[@"total_cases"] integerValue];
+                                   }
+                               }
+                               
+                               if(cBlock)
+                                   cBlock(count, error);
+                           }];
+#endif
 }
 
 #pragma mark - Photos
@@ -175,19 +187,7 @@
                            }];
     
 #endif
-    
-    
+
 }
-
-
-
-
-
-
-
-
-
-
-
 
 @end

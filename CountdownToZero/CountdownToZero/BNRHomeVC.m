@@ -13,8 +13,12 @@
 
 // Controller
 #import "BNRHeadlineVC.h"
+#import "BNRDataStore.h"
 
 @interface BNRHomeVC ()
+{
+    int _count;
+}
 
 @property (weak, nonatomic) IBOutlet BNRCountdownView *countdownView;
 
@@ -33,6 +37,7 @@
 //        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
 //        [self.navigationItem setTitleView:titleView];
         [self.navigationItem setTitle:@"Guinea Worm"];
+        
     }
     
     return self;
@@ -52,9 +57,17 @@
     static BOOL firstLoad = YES;
     if(firstLoad)
     {
-        [_countdownView countdownFrom:10000 to:6 duration:1 completion:nil];
-        firstLoad = NO;
+        //[_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
+        //firstLoad = NO;
+        
+        [[BNRDataStore sharedStore] getYearToDateNewCaseCountWithCompletion: ^(int count, NSError *error) {
+            _count = count;
+            [_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
+            firstLoad = NO;
+        }];
     }
+    
+    
 }
 
 #pragma mark - Actions
