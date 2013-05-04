@@ -47,7 +47,7 @@
 
 - (void)sharedInit
 {
-    _duration = 1.2;
+    _duration = 1.5;
 }
 
 - (void)growGraph

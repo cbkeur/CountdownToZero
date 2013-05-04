@@ -10,9 +10,9 @@
 #import "BNRHeadline.h"
 
 @interface BNRHeadlineVC ()
-{
-    BNRHeadline *_headline;
-}
+
+@property (weak, nonatomic) IBOutlet UIWebView *webView;
+@property (strong, nonatomic) BNRHeadline *headline;
 
 @end
 
@@ -26,6 +26,9 @@
     
     if(self)
     {
+//        UIBarButtonItem *safariBtn = [[UIBarButtonItem alloc] initWithTitle:@"Open in Safari" style:UIBarButtonItemStyleBordered target:self action:@selector(openInSafari:)];
+//        [self.navigationItem setRightBarButtonItem:safariBtn];        
+        
         [self.navigationItem setTitle:@"Headline"];
         _headline = headline;
     }
@@ -38,10 +41,24 @@
     return [self initWithHeadline: nil];
 }
 
-- (void)didReceiveMemoryWarning
+#pragma mark - View methods
+
+- (void)viewDidLoad
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [super viewDidLoad];
+    
+    [_webView setScalesPageToFit:YES];
+    
+    NSURL *url = [NSURL URLWithString:[_headline headlineLink]];
+    NSURLRequest *req = [NSURLRequest requestWithURL:url];
+    [_webView loadRequest:req];
+}
+
+#pragma mark - Action
+
+- (void)openInSafari:(id)sender
+{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:_headline.headlineLink]];
 }
 
 @end

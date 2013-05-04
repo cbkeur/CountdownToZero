@@ -10,6 +10,10 @@
 
 #import "BNRBaseVC.h"
 
+@class BNRHeadline;
+
 @interface BNRHeadlineVC : BNRBaseVC
+
+- (id)initWithHeadline: (BNRHeadline *)headline;
 
 @end

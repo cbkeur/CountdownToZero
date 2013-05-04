@@ -83,18 +83,28 @@
               forSupplementaryViewOfKind: UICollectionElementKindSectionHeader
                      withReuseIdentifier: SECTION_HEADER];
     
-    // Load media
-    [[BNRDataStore sharedStore] getPhotoListWithCompletion: ^(NSArray *photos, NSError *err) {
-        if (photos) {
-            _photoArray = [photos copy];
+    
+    __block int count = 0;
+    void (^updateBlock)(void) = ^{
+        count--;
+        if(count == 0)
             [[self collectionView] reloadData];
-        }
-        [[BNRDataStore sharedStore] getInfographicListWithCompletion: ^(NSArray *infographics, NSError *err) {
-            if (photos) {
-                _infographicArray = [infographics copy];
-                [[self collectionView] reloadData];
-            }
-        }];
+    };
+    
+    count++;
+    [[BNRDataStore sharedStore] getPhotoListWithCompletion: ^(NSArray *photos, NSError *err) {
+        if (photos)
+            _photoArray = [photos copy];
+        
+        updateBlock();
+    }];
+    
+    count++;
+    [[BNRDataStore sharedStore] getInfographicListWithCompletion: ^(NSArray *infographics, NSError *err) {
+        if (infographics)
+            _infographicArray = [infographics copy];
+        
+        updateBlock();
     }];
 }
 
@@ -175,7 +185,12 @@
                                                                        andPhotoFrame: photoFrame];
     [_photoViewerViewController setDelegate: self];
     [_hiddenCell setHidden: YES];
-    [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
+    
+//    [[[self tabBarController] view] addSubview: [_photoViewerViewController view]];
+    
+    [_photoViewerViewController.view setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    [_photoViewerViewController.view setFrame:self.view.window.bounds];
+    [self.view.window addSubview:_photoViewerViewController.view];
 }
 
 

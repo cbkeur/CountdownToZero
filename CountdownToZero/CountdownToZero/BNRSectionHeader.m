@@ -39,24 +39,4 @@
     return self;
 }
 
-<<<<<<< HEAD
-=======
-
-- (void)layoutSubviews
-{
-    [super layoutSubviews];
-    NSLog(@"Section Label");
-    
-}
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
->>>>>>> d57fa5189d55fb447bdd8141d75edfb1366f0ff4
 @end

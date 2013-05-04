@@ -29,17 +29,21 @@
         
         CGRect imageFrame = CGRectMake(5.0f, 5.0f, frame.size.width - 10.0f, frame.size.height - 10.0f);
         _photoImageView = [[UIImageView alloc] initWithFrame: imageFrame];
-        [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
+        [_photoImageView setContentMode: UIViewContentModeScaleAspectFill];
         [_photoImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+        [_photoImageView setClipsToBounds:YES];
         
         [[self contentView] addSubview: _photoImageView];
         
-        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-5-[a]-5-|"
-                                                                      options: NSLayoutFormatAlignAllCenterX
+        // @"H:|-5-[a]-5-|"
+        // @"V:|-5-[a]-5-|"
+        
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-2-[a]-2-|"
+                                                                      options: 0
                                                                       metrics: nil
                                                                         views: @{@"a": _photoImageView}]];
-        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-5-[a]-5-|"
-                                                                      options: NSLayoutFormatAlignAllCenterY
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-2-[a]-2-|"
+                                                                      options: 0
                                                                       metrics: nil
                                                                         views: @{@"a": _photoImageView}]];
         

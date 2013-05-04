@@ -25,6 +25,7 @@
     __weak IBOutlet UIView *_headlineView;
     __weak IBOutlet UIImageView *_headlineImageView;
     __weak IBOutlet UILabel *_headlineLabel;
+    __weak IBOutlet UIView *_headlineLabelBackgroundView;
     __weak IBOutlet UILabel *_casesLabel;
     
     BNRHeadline *_headline;
@@ -75,10 +76,12 @@
     NSDate *now = [NSDate date];
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     [df setTimeStyle:NSDateFormatterNoStyle];
-    [df setDateStyle:NSDateFormatterShortStyle];
+    [df setDateFormat:@"MMMM d"];
     NSString *labelStr = [NSString stringWithFormat:@"Worldwide Cases\nJanuary 1 - %@", [df stringFromDate:now]];
     [_casesLabel setText:labelStr];
     [_casesLabel setHidden:YES];
+    [_headlineLabelBackgroundView setHidden:YES];
+    [_headlineLabel setMinimumScaleFactor:0.1];
     
     __block int counter = 0;
     void (^finalBlock)(void) = ^{
@@ -131,22 +134,25 @@
                     [self configureHeadline];
                 }
             }
-        }
-         }];
+        }];
+    }];
 }
 
 #pragma mark - Actions
 
 - (void)headlineTapped:(id)sender
 {
-    BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
+    BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] initWithHeadline:_headline];
     [self.navigationController pushViewController:headlineVC animated:YES];
 }
 
 - (void)configureHeadline
 {
     if ([_headline headline])
+    {
+        [_headlineLabelBackgroundView setHidden:NO];
         [_headlineLabel setText: [_headline headline]];
+    }
     [_headlineLabel setTextColor: [UIColor whiteColor]];
     
     if ([_headline headlineImage])

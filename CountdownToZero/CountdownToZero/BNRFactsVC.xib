@@ -12,7 +12,6 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
-			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUIScrollView</string>
 			<string>IBUIView</string>
@@ -142,27 +141,11 @@ IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 						<double key="preferredMaxLayoutWidth">274</double>
 					</object>
-					<object class="IBUIImageView" id="720136263">
-						<reference key="NSNextResponder" ref="517255152"/>
-						<int key="NSvFlags">269</int>
-						<string key="NSFrame">{{-22, 324}, {364, 244}}</string>
-						<reference key="NSSuperview" ref="517255152"/>
-						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="54616615"/>
-						<string key="NSReuseIdentifierKey">_NS:9</string>
-						<int key="IBUIContentMode">1</int>
-						<bool key="IBUIUserInteractionEnabled">NO</bool>
-						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<object class="NSCustomResource" key="IBUIImage">
-							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">AfricaFinal.png</string>
-						</object>
-					</object>
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="720136263"/>
+				<reference key="NSNextKeyView"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="576502021"/>
 				<reference key="IBUISimulatedDestinationMetrics" ref="153625585"/>
@@ -245,7 +228,6 @@ IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 						<reference key="object" ref="517255152"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="54616615"/>
-							<reference ref="720136263"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -265,11 +247,6 @@ IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 						<reference key="object" ref="894525714"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
-					<object class="IBObjectRecord">
-						<int key="objectID">22</int>
-						<reference key="object" ref="720136263"/>
-						<reference key="parent" ref="517255152"/>
-					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -283,7 +260,6 @@ IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.CustomClassName">BNRPageControl</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
@@ -342,10 +318,6 @@ IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">AfricaFinal.png</string>
-			<string key="NS.object.0">{1038, 768}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>

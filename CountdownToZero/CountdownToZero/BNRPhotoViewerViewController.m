@@ -89,10 +89,10 @@
         }];
     }
 
-
-    [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
+    [_photoImageView setClipsToBounds:YES];
+    [_photoImageView setContentMode: UIViewContentModeScaleAspectFill];
     [_captionTextView loadHTMLString: [_photo caption] baseURL: [NSURL URLWithString: @"/"]];
-    [_captionTextView setHidden: YES];
+    [_captionTextView setAlpha:0];
     
     if ([_photo caption]) {
         [_captionBackgroundView setHidden: NO];
@@ -136,13 +136,20 @@
     }
                      completion: ^(BOOL finished) {
                          if ([_photo caption])
-                             [_captionTextView setHidden: NO];
+                         {
+                             [UIView animateWithDuration:0.2 animations:^{
+                                 [_captionTextView setAlpha:1];
+                             }];
+                         }
                      }];
 }
 
 - (void)morphImage
 {
-    if ([_photo photo]) {
+    if ([_photo photo])
+    {
+        [_photoImageView setContentMode:UIViewContentModeScaleAspectFit];
+//        [_scrollView setZoomScale:2];
         [_activityIndicatorView stopAnimating];
         [UIView transitionWithView: self.view
                           duration: 0.5f
@@ -187,7 +194,7 @@
     [_captionBackgroundView2 setHidden: [_captionBackgroundView isHidden]];
     [_captionBackgroundView setHidden: ![_captionBackgroundView2 isHidden]];
     
-    [UIView animateWithDuration:0.1 animations:^{
+    [UIView animateWithDuration:0.2 animations:^{
         [_captionTextView setAlpha:finalAlpha];
     }];
 }
