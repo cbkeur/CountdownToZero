@@ -92,7 +92,7 @@
 
 #pragma mark - Actions
 
-- (IBAction)headlineTapped:(id)sender
+- (void)headlineTapped:(id)sender
 {
     BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
     [self.navigationController pushViewController:headlineVC animated:YES];
