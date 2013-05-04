@@ -17,7 +17,7 @@
 
 + (UIColor *)carterRedColor
 {
-    return [UIColor colorWithRed:205/255.0 green:67/255.0 blue:22/255.0 alpha:1];
+    return [UIColor colorWithRed:149/255.0 green:40/255.0 blue:0/255.0 alpha:1]; // 205, 67, 22
 }
 
 + (UIColor *)carterBlueColor

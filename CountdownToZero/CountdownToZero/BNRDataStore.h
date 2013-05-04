@@ -18,6 +18,7 @@
 // Home
 - (void)getHeadlineInfoWithCompletion:(void (^)(BNRHeadline *headline, NSError *err))cBlock;
 - (void)getHeadlineImage: (BNRHeadline *)headline WithCompletion: (void (^)(NSData *imageData, NSError *err))cBlock;
+- (void)getHistoricalDataWithCompletion:(void (^)(NSArray *data, NSError *err))cBlock;
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock;
 
 // Photos

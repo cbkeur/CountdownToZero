@@ -14,6 +14,7 @@
 #import "BNRPhoto.h"
 #import "BNRFact.h"
 #import "BNRHeadline.h"
+#import "BNRPastYearData.h"
 
 // Web services
 #import "BNRConnection.h"
@@ -63,9 +64,34 @@
 - (void)getHeadlineImage: (BNRHeadline *)headline WithCompletion: (void (^)(NSData *imageData, NSError *err))cBlock
 {
     if (![headline imageURL])
+    {
+        if(cBlock)
+            cBlock(nil, [NSError errorWithDomain:@"com.bignerdranch.guinea" code:-1 userInfo:nil]);
         return;
+    }
     
     [BNRConnection connectionWithURLString: [headline imageURL] startImmediately: YES completionBlock: cBlock];
+}
+
+- (void)getHistoricalDataWithCompletion:(void (^)(NSArray *data, NSError *err))cBlock
+{
+    [BNRConnection connectionWithURLString: @"http://guinea-worm.herokuapp.com/past_years.json"
+                          startImmediately:YES
+                           completionBlock:^(id obj, NSError *err) {
+                               
+                               NSMutableArray *monthData = [NSMutableArray array];
+                               for(NSDictionary *d in obj)
+                               {
+                                   BNRPastYearData *historicalData = [[BNRPastYearData alloc] initWithAttributes:d];
+                                   [monthData addObject:historicalData];
+                               }
+                               
+                               NSSortDescriptor *sd = [NSSortDescriptor sortDescriptorWithKey:@"year" ascending:YES];
+                               [monthData sortUsingDescriptors:@[sd]];
+                               
+                               if(cBlock)
+                                   cBlock([monthData copy], err);
+    }];
 }
 
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock

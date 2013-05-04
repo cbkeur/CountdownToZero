@@ -47,7 +47,7 @@
 
 - (void)sharedInit
 {
-    _duration = 0.7;
+    _duration = 1.2;
 }
 
 - (void)growGraph
@@ -81,7 +81,6 @@
     CGRect bounds = self.bounds;
     
     int entryCount = [_dataSource numberOfEntriesInGraph:self];
-    entryCount = 3;
 
     float barWidth = 40;
     float allBarsWidth = barWidth * entryCount;
@@ -91,12 +90,29 @@
     float startX = spacingPerEntry / 2.0;
     float startY = bounds.size.height - 30;
     
-    
+    NSMutableArray *heights = [NSMutableArray array];
+    float maxHeight = 0;
     for(int i = 0; i < entryCount; i++)
     {
         float height = [_dataSource graph:self valueForEntryAtIndex:i];
+        if(height > maxHeight)
+            maxHeight = height;
+        [heights addObject:[NSNumber numberWithFloat:height]];
+    }
+    
+    float graphHeight = self.bounds.size.height;
+    graphHeight -= 30; // Subtract graph bottom
+    graphHeight -= 30; // Subtract top
+    
+    float scalar = graphHeight / maxHeight;
+    
+    for(int i = 0; i < heights.count; i++)
+    {
+        float height = [[heights objectAtIndex:i] floatValue]; //[_dataSource graph:self valueForEntryAtIndex:i];
         if([self isGrowing])
             height *= _currentPercent;
+        NSString *valueStr = [NSString stringWithFormat:@"%i", (int)height];
+        height *= scalar;
         
         CGContextMoveToPoint(ctx, startX, startY);
         CGContextAddLineToPoint(ctx, startX, startY - height);
@@ -111,12 +127,22 @@
         [color set];
         CGContextFillPath(ctx);
         
+        UIFont *font = [UIFont systemFontOfSize:14];
+        
         if([_dataSource respondsToSelector:@selector(graph:titleForEntryAtIndex:)])
         {
             NSString *title = [_dataSource graph:self titleForEntryAtIndex:i];
-            CGPoint startPt = CGPointMake(startX, startY);
-            [title drawAtPoint:startPt withFont:[UIFont systemFontOfSize:14]];
+            CGSize size = [title sizeWithFont:font];
+            
+            float textX = startX + (barWidth / 2.0) - (size.width / 2.0);
+            CGPoint startPt = CGPointMake(textX, startY);
+            [title drawAtPoint:startPt withFont:font];
         }
+        
+        CGSize size = [valueStr sizeWithFont:font];
+        float textX = startX + (barWidth / 2.0) - (size.width / 2.0);
+        float textY = startY - height - size.height - 5;
+        [valueStr drawAtPoint:CGPointMake(textX, textY) withFont:font];
         
         startX += (barWidth + spacingPerEntry);
     }
