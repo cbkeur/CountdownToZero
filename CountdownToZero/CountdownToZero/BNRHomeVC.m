@@ -10,6 +10,7 @@
 
 // View
 #import "BNRCountdownView.h"
+#import "BNRGuineaGraph.h"
 
 // Controller
 #import "BNRHeadlineVC.h"
@@ -20,7 +21,7 @@
     int _count;
 }
 
-@property (weak, nonatomic) IBOutlet BNRCountdownView *countdownView;
+@property (weak, nonatomic) IBOutlet BNRGuineaGraph *graph;
 
 @end
 
@@ -76,6 +77,33 @@
 {
     BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
     [self.navigationController pushViewController:headlineVC animated:YES];
+}
+
+#pragma mark - Graph data source methods
+
+- (int)numberOfEntriesInGraph:(BNRGuineaGraph *)graph
+{
+    return 3;
+}
+
+- (CGFloat)graph:(BNRGuineaGraph *)graph valueForEntryAtIndex:(int)index
+{
+    if(index == 0)
+        return 150;
+    else if(index == 1)
+        return 80;
+    else
+        return 15;
+}
+
+- (NSString *)graph:(BNRGuineaGraph *)graph titleForEntryAtIndex:(int)index
+{
+    if(index == 0)
+        return @"2011";
+    else if(index == 1)
+        return @"2012";
+    else
+        return @"2013";
 }
 
 @end

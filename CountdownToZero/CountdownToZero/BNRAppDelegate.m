@@ -22,7 +22,7 @@
 
     //0, 79. 119
     
-    UIColor *blueColor = [UIColor colorWithRed:0 green:79/255.0 blue:119/255.0 alpha:1];
+    UIColor *blueColor = [UIColor carterBlueColor];
     
     [[UINavigationBar appearance] setTintColor:blueColor];
     [[UINavigationBar appearance] setTitleTextAttributes:@{UITextAttributeFont: [UIFont fontWithName:@"HoeflerText-Regular" size:24]}];
