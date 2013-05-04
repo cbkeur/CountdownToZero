@@ -12,6 +12,7 @@
 		4953DBF71732EC1700F4F44D /* BNRPhotoViewerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBF51732EC1700F4F44D /* BNRPhotoViewerViewController.m */; };
 		4953DBF81732EC1700F4F44D /* BNRPhotoViewerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */; };
 		4953DBFB1734ADEB00F4F44D /* BNRSectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 4953DBFA1734ADEB00F4F44D /* BNRSectionHeader.m */; };
+		4998EF1F1735500F00EB09E3 /* BNRHeadline.m in Sources */ = {isa = PBXBuildFile; fileRef = 4998EF1E1735500F00EB09E3 /* BNRHeadline.m */; };
 		6B03703D1731D782000F218F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703C1731D782000F218F /* UIKit.framework */; };
 		6B03703F1731D782000F218F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B03703E1731D782000F218F /* Foundation.framework */; };
 		6B0370411731D782000F218F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B0370401731D782000F218F /* CoreGraphics.framework */; };
@@ -93,6 +94,8 @@
 		4953DBF61732EC1700F4F44D /* BNRPhotoViewerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BNRPhotoViewerViewController.xib; sourceTree = "<group>"; };
 		4953DBF91734ADEB00F4F44D /* BNRSectionHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRSectionHeader.h; sourceTree = "<group>"; };
 		4953DBFA1734ADEB00F4F44D /* BNRSectionHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRSectionHeader.m; sourceTree = "<group>"; };
+		4998EF1D1735500F00EB09E3 /* BNRHeadline.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BNRHeadline.h; sourceTree = "<group>"; };
+		4998EF1E1735500F00EB09E3 /* BNRHeadline.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BNRHeadline.m; sourceTree = "<group>"; };
 		6B0370391731D782000F218F /* CountdownToZero.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountdownToZero.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B03703C1731D782000F218F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		6B03703E1731D782000F218F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -366,6 +369,8 @@
 				6B03708F1731F5E3000F218F /* BNRFact.m */,
 				6BDF1C0C1732B3E100B0C343 /* BNRCarterCenter.h */,
 				6BDF1C0D1732B3E100B0C343 /* BNRCarterCenter.m */,
+				4998EF1D1735500F00EB09E3 /* BNRHeadline.h */,
+				4998EF1E1735500F00EB09E3 /* BNRHeadline.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -558,6 +563,8 @@
 				6BE840B91733074100B206EA /* BNRPageControl.m in Sources */,
 				6BE840BE1734055500B206EA /* BNRGuineaGraph.m in Sources */,
 				4953DBFB1734ADEB00F4F44D /* BNRSectionHeader.m in Sources */,
+				6B6EFC411734472D003D4DAC /* BNRMapVC.m in Sources */,
+				4998EF1F1735500F00EB09E3 /* BNRHeadline.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

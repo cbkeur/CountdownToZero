@@ -37,7 +37,7 @@
     {
 //        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
 //        [self.navigationItem setTitleView:titleView];
-        [self.navigationItem setTitle:@"Guinea Worm"];
+        [self.navigationItem setTitle:@"Countdown to Zero"];
         
     }
     
@@ -56,17 +56,25 @@
     [super viewDidAppear:animated];
     
     static BOOL firstLoad = YES;
+    //    if(firstLoad)
+    //    {
+    firstLoad = NO;
+    [_graph growGraph];
+    //    }
+    /*
     if(firstLoad)
     {
         //[_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
         //firstLoad = NO;
+        
         
         [[BNRDataStore sharedStore] getYearToDateNewCaseCountWithCompletion: ^(int count, NSError *error) {
             _count = count;
             [_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
             firstLoad = NO;
         }];
-    }
+     
+    }*/
     
     
 }
