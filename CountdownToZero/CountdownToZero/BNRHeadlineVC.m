@@ -7,8 +7,12 @@
 //
 
 #import "BNRHeadlineVC.h"
+#import "BNRHeadline.h"
 
 @interface BNRHeadlineVC ()
+{
+    BNRHeadline *_headline;
+}
 
 @end
 
@@ -16,13 +20,14 @@
 
 #pragma mark - Initializers
 
-- (id)init
+- (id)initWithHeadline: (BNRHeadline *)headline;
 {
     self = [super initWithNibName:nil bundle:nil];
     
     if(self)
     {
         [self.navigationItem setTitle:@"Headline"];
+        _headline = headline;
     }
     
     return self;
@@ -30,7 +35,7 @@
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    return [self init];
+    return [self initWithHeadline: nil];
 }
 
 - (void)didReceiveMemoryWarning

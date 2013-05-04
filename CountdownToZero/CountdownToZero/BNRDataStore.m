@@ -13,6 +13,7 @@
 // Model
 #import "BNRPhoto.h"
 #import "BNRFact.h"
+#import "BNRHeadline.h"
 
 // Web services
 #import "BNRConnection.h"
@@ -36,18 +37,35 @@
 
 #pragma mark - Home page calls
 
-- (void)getHeadlineInfoWithCompletion:(void (^)(id obj, NSError *err))cBlock
+- (void)getHeadlineInfoWithCompletion:(void (^)(BNRHeadline *headline, NSError *err))cBlock
 {
+#ifdef DUMMY_DATA
     id data = nil;
     NSError *error = nil;
-#ifdef DUMMY_DATA
     data = @{@"title": @"Chad eliminated all cases of guinea worm", @"url" : @"www.google.com"};
-#else
-    
-#endif
-    
     if(cBlock)
         cBlock(data, error);
+#else
+    [BNRConnection connectionWithURLString: @"http://guinea-worm.herokuapp.com/headlines.json"
+                          startImmediately: YES
+                           completionBlock: ^(id jsonObj, NSError *err) {
+                               BNRHeadline *headline = nil;
+                               if ([jsonObj isKindOfClass: [NSDictionary class]]) {
+                                   headline = [[BNRHeadline alloc] initWithJSONDictionary: jsonObj];
+                               }
+                               
+                               if(cBlock)
+                                   cBlock(headline, err);
+                           }];
+#endif
+}
+
+- (void)getHeadlineImage: (BNRHeadline *)headline WithCompletion: (void (^)(NSData *imageData, NSError *err))cBlock
+{
+    if (![headline imageURL])
+        return;
+    
+    [BNRConnection connectionWithURLString: [headline imageURL] startImmediately: YES completionBlock: cBlock];
 }
 
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock

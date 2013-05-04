@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @class BNRPhoto;
+@class BNRHeadline;
 
 @interface BNRDataStore : NSObject
 
 + (BNRDataStore *)sharedStore;
 
 // Home
-- (void)getHeadlineInfoWithCompletion:(void (^)(id obj, NSError *err))cBlock;
+- (void)getHeadlineInfoWithCompletion:(void (^)(BNRHeadline *headline, NSError *err))cBlock;
+- (void)getHeadlineImage: (BNRHeadline *)headline WithCompletion: (void (^)(NSData *imageData, NSError *err))cBlock;
 - (void)getYearToDateNewCaseCountWithCompletion:(void (^)(int count, NSError *err))cBlock;
 
 // Photos

@@ -15,13 +15,21 @@
 // Controller
 #import "BNRHeadlineVC.h"
 #import "BNRDataStore.h"
+#import "BNRHeadline.h"
 
 @interface BNRHomeVC ()
 {
+    __weak IBOutlet UIView *_headlineView;
+    __weak IBOutlet UIImageView *_headlineImageView;
+    __weak IBOutlet UILabel *_headlineLabel;
+    
+    BNRHeadline *_headline;
     int _count;
 }
 
 @property (weak, nonatomic) IBOutlet BNRGuineaGraph *graph;
+
+- (void)configureHeadline;
 
 @end
 
@@ -35,10 +43,7 @@
 
     if(self)
     {
-//        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
-//        [self.navigationItem setTitleView:titleView];
         [self.navigationItem setTitle:@"Countdown to Zero"];
-        
     }
     
     return self;
@@ -56,27 +61,33 @@
     [super viewDidAppear:animated];
     
     static BOOL firstLoad = YES;
-    //    if(firstLoad)
-    //    {
-    firstLoad = NO;
-    [_graph growGraph];
-    //    }
-    /*
+
     if(firstLoad)
     {
-        //[_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
-        //firstLoad = NO;
-        
-        
         [[BNRDataStore sharedStore] getYearToDateNewCaseCountWithCompletion: ^(int count, NSError *error) {
             _count = count;
-            [_countdownView countdownFrom:10000 to: _count duration:1 completion:nil];
+            [_graph growGraph];
             firstLoad = NO;
         }];
-     
-    }*/
-    
-    
+        
+        [[BNRDataStore sharedStore] getHeadlineInfoWithCompletion: ^(BNRHeadline *headline, NSError *error) {
+            _headline = headline;
+            [self configureHeadline];
+            [[BNRDataStore sharedStore] getHeadlineImage: headline WithCompletion: ^(NSData *imageData, NSError *err) {
+                if (imageData) {
+                    //[activityIndicatorView stopAnimating];
+                    UIImage *image = [UIImage imageWithData: imageData];
+                    if (image) {
+                        [headline setHeadlineImage: image];
+                        [self configureHeadline];
+                        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                                     action:@selector(headlineTapped:)];
+                        [_headlineView addGestureRecognizer: tapGesture];
+                    }
+                }
+            }];
+        }];
+    }
 }
 
 #pragma mark - Actions
@@ -85,6 +96,15 @@
 {
     BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
     [self.navigationController pushViewController:headlineVC animated:YES];
+}
+
+- (void)configureHeadline
+{
+    [_headlineLabel setText: [_headline headline]];
+    [_headlineLabel setTextColor: [UIColor whiteColor]];
+    
+    if ([_headline headlineImage])
+        [_headlineImageView setImage: [_headline headlineImage]];
 }
 
 #pragma mark - Graph data source methods
@@ -101,7 +121,7 @@
     else if(index == 1)
         return 80;
     else
-        return 15;
+        return _count;
 }
 
 - (NSString *)graph:(BNRGuineaGraph *)graph titleForEntryAtIndex:(int)index
