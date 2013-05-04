@@ -157,8 +157,6 @@
     
     [UIView animateWithDuration:0.1 animations:^{
         [_captionTextView setAlpha:finalAlpha];
-        //[_captionBackgroundView setAlpha: finalBackgroundAlpha];
-        //[_captionBackgroundView2 setAlpha: finalBackgroundAlpha2];
     }];
 }
 
