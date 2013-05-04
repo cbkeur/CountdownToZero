@@ -31,9 +31,10 @@
     [[tbc tabBar] setTintColor:blueColor];
     [[tbc tabBar] setSelectedImageTintColor:[UIColor colorWithRed:205/255.0 green:67/255.0 blue:22/255.0 alpha:1]];
     
-    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-    [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
-    BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] initWithCollectionViewLayout: flowLayout];
+    //UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    //[flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
+    //BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] initWithCollectionViewLayout: flowLayout];
+    BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] init];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:photosVC];
     [nc2.tabBarItem setTitle:@"Photos"];
     [nc2.tabBarItem setImage:[UIImage imageNamed:@"landscape"]];

@@ -29,11 +29,13 @@
 
 - (id)init
 {
-    self = [super initWithNibName:nil bundle:nil];
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
+    self = [super initWithCollectionViewLayout: flowLayout];
     
     if(self)
     {
-        [self.navigationItem setTitle:@"Photos"];
+        [self setTitle: @"Photos"];
     }
     
     return self;
@@ -49,14 +51,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[self collectionView] setBackgroundColor:[UIColor carterBackgroundColor]];
+    [[self view] setBackgroundColor:[UIColor carterBackgroundColor]];
     
     UIImageView *eagleHead = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"eaglehead"]];
     [eagleHead setAutoresizingMask:UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleLeftMargin|UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleRightMargin];
     [eagleHead setAlpha:0.08];
-    [[self collectionView] insertSubview:eagleHead atIndex:0];
-    [eagleHead setCenter:self.collectionView.center];
+    [[self view] insertSubview:eagleHead atIndex:0];
+    [eagleHead setCenter:self.view.center];
     
+    [[self collectionView] setBackgroundColor: [UIColor clearColor]];
     [[self collectionView] registerClass: [BNRMediaCell class] forCellWithReuseIdentifier: PHOTO_CELL];
     
     // Load media
