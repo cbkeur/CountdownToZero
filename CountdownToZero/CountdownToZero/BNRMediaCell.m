@@ -27,7 +27,7 @@
     if (self) {
         [self setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
         
-        CGRect imageFrame = CGRectMake(5.0f, 5.0f, frame.size.width - 10.0f, frame.size.height - 20.0f);
+        CGRect imageFrame = CGRectMake(5.0f, 5.0f, frame.size.width - 10.0f, frame.size.height - 10.0f);
         _photoImageView = [[UIImageView alloc] initWithFrame: imageFrame];
         [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
         [[self contentView] addSubview: _photoImageView];

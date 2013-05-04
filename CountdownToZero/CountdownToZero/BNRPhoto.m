@@ -41,8 +41,11 @@
 {
     NSString *newCaption = nil;
     if (caption) {
-        newCaption = [caption stringByReplacingOccurrencesOfString: @"<div "
-                                                        withString: @"<div style=\"color:white;font-size:10px;font-family:\"Times New Roman\", Times, serif;\" "];
+        //newCaption = [caption stringByReplacingOccurrencesOfString: @"<div "
+          //                                              withString: @"<div style=\"color:white;font-size:10px;font-family:\"Times New Roman\", Times, serif;\" "];
+        newCaption = [NSString stringWithFormat: @"%@%@%@", @"<div style=\"color:white;font-size:10px;font-family:\"Times New Roman\", Times, serif;\">",
+                      caption,
+                      @"</div>"];
     }
     _caption = newCaption;
 }

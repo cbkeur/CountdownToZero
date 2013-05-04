@@ -16,6 +16,7 @@
     __weak IBOutlet UIView *_captionBackgroundView;
     __weak IBOutlet UIView *_captionBackgroundView2;
     __weak IBOutlet UIView *_imageCellView;
+    __weak IBOutlet UIView *_imageBackgroundView;
     __weak IBOutlet UIImageView *_photoImageView;
     __weak IBOutlet UIWebView *_captionTextView;
     __weak IBOutlet UIScrollView *_scrollView;
@@ -27,6 +28,7 @@
 }
 
 - (void)handleTapGesture: (UITapGestureRecognizer *)tapGesture;
+- (void)morphImage;
 
 @end
 
@@ -58,28 +60,30 @@
     [[self view] addGestureRecognizer: tapGestureRecognizer];
     
     [_imageCellView setFrame: _startFrame];
-    [_imageCellView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
+    [_imageBackgroundView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame: [_imageCellView bounds]];
     [_activityIndicatorView setHidesWhenStopped: YES];
     [_activityIndicatorView setAutoresizingMask: UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight];
     [_imageCellView addSubview: _activityIndicatorView];
     
-    if ([_photo photo])
-        [_photoImageView setImage: [_photo photo]];
+    if ([_photo photo]) {
+        [_photoImageView setImage: [_photo thumbnail]];
+        
+        [self performSelector: @selector(morphImage) withObject: nil afterDelay: .3];
+    }
     else {
         [_activityIndicatorView startAnimating];
         [_photoImageView setImage: [_photo thumbnail]];
         UIActivityIndicatorView * __weak activityIndicatorView = _activityIndicatorView;
-        UIImageView * __weak imageView = _photoImageView;
         BNRPhoto * __weak photo = _photo;
         [[BNRDataStore sharedStore] getPhoto: photo WithCompletion: ^(NSData *data, NSError *err) {
             if (data) {
                 [activityIndicatorView stopAnimating];
                 UIImage *image = [UIImage imageWithData: data];
                 if (image) {
-                    [imageView setImage: image];
                     [photo setPhoto: image];
+                    [self morphImage];
                 }
             }
         }];
@@ -114,6 +118,7 @@
     [UIView animateWithDuration: 0.25f delay: 0.0f options: UIViewAnimationOptionCurveEaseInOut animations: ^() {
         [_backgroundView setAlpha: 0.8f];
         [_imageCellView setFrame: newFrame];
+        [_imageBackgroundView setAlpha: 0.0f];
         [_captionBackgroundView setAlpha: 0.8f];
     }
                      completion: ^(BOOL finished) {
@@ -121,6 +126,17 @@
                      }];
 }
 
+- (void)morphImage
+{
+    if ([_photo photo]) {
+        [UIView transitionWithView: self.view
+                          duration: 0.5f
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        animations:^{
+                            [_photoImageView setImage: [_photo photo]];
+                        } completion:nil];
+    }
+}
 #pragma mark - Actions
 
 - (IBAction)close:(id)sender
@@ -135,6 +151,7 @@
         [_imageCellView setFrame: _startFrame];
         [_captionBackgroundView setAlpha: 0.0f];
         [_captionBackgroundView2 setAlpha: 0.0f];
+        [_imageBackgroundView setAlpha: 1.0f];
     }
                      completion: ^(BOOL finished) {
                          if ([_delegate respondsToSelector: @selector(photoViewerDidFinish:)]) {
