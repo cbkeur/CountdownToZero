@@ -53,14 +53,16 @@
 {
     [super viewDidLoad];
     
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                           action: @selector(handleTapGesture:)];
-    [tapGestureRecognizer setNumberOfTapsRequired: 1];
-    [tapGestureRecognizer setDelaysTouchesEnded: YES];
-    [[self view] addGestureRecognizer: tapGestureRecognizer];
+    if ([_photo caption]) {
+        UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                               action: @selector(handleTapGesture:)];
+        [tapGestureRecognizer setNumberOfTapsRequired: 1];
+        [tapGestureRecognizer setDelaysTouchesEnded: YES];
+        [[self view] addGestureRecognizer: tapGestureRecognizer];
+    }
     
     [_imageCellView setFrame: _startFrame];
-    [_imageBackgroundView setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
+    [_imageBackgroundView setBackgroundColor: [UIColor carterRedColor]];
     
     _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame: [_imageCellView bounds]];
     [_activityIndicatorView setHidesWhenStopped: YES];
@@ -75,15 +77,13 @@
     else {
         [_activityIndicatorView startAnimating];
         [_photoImageView setImage: [_photo thumbnail]];
-        UIActivityIndicatorView * __weak activityIndicatorView = _activityIndicatorView;
         BNRPhoto * __weak photo = _photo;
         [[BNRDataStore sharedStore] getPhoto: photo WithCompletion: ^(NSData *data, NSError *err) {
             if (data) {
-                [activityIndicatorView stopAnimating];
                 UIImage *image = [UIImage imageWithData: data];
                 if (image) {
                     [photo setPhoto: image];
-                    [self morphImage];
+                    [self performSelector: @selector(morphImage) withObject: nil afterDelay: .25];
                 }
             }
         }];
@@ -94,8 +94,18 @@
     [_captionTextView loadHTMLString: [_photo caption] baseURL: [NSURL URLWithString: @"/"]];
     [_captionTextView setHidden: YES];
     
-    [_captionBackgroundView2 setHidden: YES];
-    [_captionBackgroundView2 setAlpha: 0.8f];
+    if ([_photo caption]) {
+        [_captionBackgroundView setHidden: NO];
+        [_captionBackgroundView setAlpha: 0.0f];
+        [_captionBackgroundView2 setHidden: YES];
+        [_captionBackgroundView2 setAlpha: 0.8f];
+    }
+    else {
+        [_captionBackgroundView setHidden: YES];
+        [_captionBackgroundView setAlpha: 0.8f];
+        [_captionBackgroundView2 setHidden: NO];
+        [_captionBackgroundView2 setAlpha: 0.0f];
+    }
     
     CGPoint centerPoint = [[self view] center];
     CGSize viewSize = [[self view] frame].size;
@@ -119,16 +129,21 @@
         [_backgroundView setAlpha: 0.8f];
         [_imageCellView setFrame: newFrame];
         [_imageBackgroundView setAlpha: 0.0f];
-        [_captionBackgroundView setAlpha: 0.8f];
+        if ([_photo caption])
+            [_captionBackgroundView setAlpha: 0.8f];
+        else
+            [_captionBackgroundView2 setAlpha: 0.8f];
     }
                      completion: ^(BOOL finished) {
-                         [_captionTextView setHidden: NO];
+                         if ([_photo caption])
+                             [_captionTextView setHidden: NO];
                      }];
 }
 
 - (void)morphImage
 {
     if ([_photo photo]) {
+        [_activityIndicatorView stopAnimating];
         [UIView transitionWithView: self.view
                           duration: 0.5f
                            options: UIViewAnimationOptionTransitionCrossDissolve
@@ -183,5 +198,6 @@
 {
     return _imageCellView;
 }
+
 
 @end

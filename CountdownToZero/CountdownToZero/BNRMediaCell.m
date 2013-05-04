@@ -25,18 +25,41 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor: [UIColor colorWithRed: 149.0f / 255.0f green: 40.0f / 255.0f blue: 0.0 alpha: 1.0]];
+        [self setBackgroundColor: [UIColor carterRedColor]];
         
         CGRect imageFrame = CGRectMake(5.0f, 5.0f, frame.size.width - 10.0f, frame.size.height - 10.0f);
         _photoImageView = [[UIImageView alloc] initWithFrame: imageFrame];
         [_photoImageView setContentMode: UIViewContentModeScaleAspectFit];
+        [_photoImageView setTranslatesAutoresizingMaskIntoConstraints: NO];
+        
         [[self contentView] addSubview: _photoImageView];
+        
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-5-[a]-5-|"
+                                                                      options: NSLayoutFormatAlignAllCenterX
+                                                                      metrics: nil
+                                                                        views: @{@"a": _photoImageView}]];
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-5-[a]-5-|"
+                                                                      options: NSLayoutFormatAlignAllCenterY
+                                                                      metrics: nil
+                                                                        views: @{@"a": _photoImageView}]];
         
         CGRect activityIndicatorFrame = CGRectMake(0, 0, frame.size.width, frame.size.height);
         _activityIndicatorView = [[UIActivityIndicatorView alloc] initWithFrame: activityIndicatorFrame];
         [_activityIndicatorView setHidesWhenStopped: YES];
         [_activityIndicatorView startAnimating];
+        [_activityIndicatorView setTranslatesAutoresizingMaskIntoConstraints: NO];
         [[self contentView] addSubview: _activityIndicatorView];
+        
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"H:|-5-[a]-5-|"
+                                                                                    options: NSLayoutFormatAlignAllCenterX
+                                                                                    metrics: nil
+                                                                                      views: @{@"a": _activityIndicatorView}]];
+        [[self contentView] addConstraints: [NSLayoutConstraint constraintsWithVisualFormat: @"V:|-5-[a]-5-|"
+                                                                                    options: NSLayoutFormatAlignAllCenterY
+                                                                                    metrics: nil
+                                                                                      views: @{@"a": _activityIndicatorView}]];
+        
+        
     }
     return self;
 }

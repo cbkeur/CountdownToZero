@@ -16,13 +16,17 @@
 #define PHOTO_CELL @"PHOTO_CELL"
 #define SECTION_HEADER @"SECTION_HEADER"
 
-@interface BNRPhotoVC () <BNRPhotoViewerDelegate>
+@interface BNRPhotoVC () <BNRPhotoViewerDelegate, UICollectionViewDelegateFlowLayout>
 {
     NSArray *_photoArray;
     NSArray *_infographicArray;
     BNRPhotoViewerViewController *_photoViewerViewController;
     BNRMediaCell *_hiddenCell;
+    
+    BOOL _reflow;
 }
+
+- (void)reflowLayout: (UITapGestureRecognizer *)sender;
 
 @end
 
@@ -36,11 +40,13 @@
     [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
     [flowLayout setSectionInset: UIEdgeInsetsMake(20, 0, 20, 0)];
     [flowLayout setHeaderReferenceSize: CGSizeMake(100, 30)];
+    
     self = [super initWithCollectionViewLayout: flowLayout];
     
     if(self)
     {
-        [self setTitle: @"Photos"];
+        [self setTitle: @"Images"];
+        _reflow = NO;
     }
     
     return self;
@@ -64,6 +70,13 @@
     [[self view] insertSubview:eagleHead atIndex:0];
     [eagleHead setCenter:self.view.center];
     
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                 action: @selector(reflowLayout:)];
+    [tapGesture setNumberOfTapsRequired: 3];
+    [tapGesture setNumberOfTouchesRequired: 2];
+    
+    [[self collectionView] addGestureRecognizer: tapGesture];
+    
     [[self collectionView] setBackgroundColor: [UIColor clearColor]];
     [[self collectionView] registerClass: [BNRMediaCell class] forCellWithReuseIdentifier: PHOTO_CELL];
     [[self collectionView] registerClass: [BNRSectionHeader class]
@@ -85,14 +98,26 @@
     }];
 }
 
+- (void)reflowLayout:(UITapGestureRecognizer *)sender
+{
+    NSLog(@"Reflowing");
+    _reflow = !_reflow;
+    UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+    [flowLayout setItemSize: CGSizeMake(90.0f, 90.0f)];
+    [flowLayout setSectionInset: UIEdgeInsetsMake(20, 0, 20, 0)];
+    [flowLayout setHeaderReferenceSize: CGSizeMake(100, 30)];
+    [[self collectionView] setCollectionViewLayout: flowLayout animated: YES];
+    //[[self collectionView] reloadData];
+}
+
 #pragma mark - UICollectionView DataSource Methods
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return [_photoArray count];
+    if (section == 0 && _infographicArray)
+        return [_infographicArray count];
     
-    return  [_infographicArray count];
+    return  [_photoArray count];
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -102,10 +127,11 @@
     if (!cell) {
         cell = [[BNRMediaCell alloc] init];
     }
-    if (indexPath.section == 0)
-        cell.photo = _photoArray[indexPath.row];
-    else
+    if (indexPath.section == 0 && _infographicArray)
         cell.photo = _infographicArray[indexPath.row];
+    else
+        cell.photo = _photoArray[indexPath.row];
+    
     
     return cell;
 }
@@ -118,7 +144,6 @@
     if ([_infographicArray count] > 0)
         numberOfSections++;
     
-    NSLog(@"Number of sections: %d", numberOfSections);
     return numberOfSections;
 }
 
@@ -129,6 +154,13 @@
     BNRSectionHeader *sectionHeader = [[self collectionView] dequeueReusableSupplementaryViewOfKind: kind
                                                                                 withReuseIdentifier:SECTION_HEADER
                                                                                        forIndexPath: indexPath];
+    
+    if ([indexPath section] == 0 && _infographicArray) {
+        [[sectionHeader sectionNameLabel] setText: @"Infographics"];
+    }
+    else {
+        [[sectionHeader sectionNameLabel] setText: @"Photos"];
+    }
     return sectionHeader;
 }
 
@@ -166,6 +198,25 @@
     _photoViewerViewController = nil;
     [_hiddenCell setHidden: NO];
     _hiddenCell = nil;
+}
+
+#pragma mark - UICollectionViewDelegateFlowLayout Methods
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section
+{
+    UIEdgeInsets insets = UIEdgeInsetsMake(10.0f, 10.0f, 10.0f, 10.0f);
+    return insets;
+}
+
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (_reflow) {
+        if (indexPath.row % 3 == 2)
+            return CGSizeMake(300.0f, 300.0f);
+        return CGSizeMake(145.0f, 145.0f);
+    }
+    
+    return CGSizeMake(90.0f, 90.0f);
 }
 
 @end

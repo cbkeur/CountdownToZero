@@ -36,7 +36,7 @@
     //BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] initWithCollectionViewLayout: flowLayout];
     BNRPhotoVC *photosVC = [[BNRPhotoVC alloc] init];
     UINavigationController *nc2 = [[UINavigationController alloc] initWithRootViewController:photosVC];
-    [nc2.tabBarItem setTitle:@"Photos"];
+    [nc2.tabBarItem setTitle:@"Images"];
     [nc2.tabBarItem setImage:[UIImage imageNamed:@"landscape"]];
     
     BNRHomeVC *homeVC = [[BNRHomeVC alloc] init];

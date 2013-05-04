@@ -100,7 +100,8 @@
 
 - (void)configureHeadline
 {
-    [_headlineLabel setText: [_headline headline]];
+    if ([_headline headline])
+        [_headlineLabel setText: [_headline headline]];
     [_headlineLabel setTextColor: [UIColor whiteColor]];
     
     if ([_headline headlineImage])

@@ -10,4 +10,6 @@
 
 @interface BNRSectionHeader : UICollectionReusableView
 
+@property (nonatomic, readonly) UILabel *sectionNameLabel;
+
 @end
