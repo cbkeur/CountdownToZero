@@ -14,12 +14,14 @@
 
 // View
 #import "BNRFactPage.h"
+#import "BNRPageControl.h"
 
-@interface BNRFactsVC () <UITableViewDataSource, UITableViewDelegate>
+@interface BNRFactsVC () <UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) IBOutlet UIView *infoView;
 @property (strong, nonatomic) NSArray *facts;
+@property (weak, nonatomic) IBOutlet BNRPageControl *pageControl;
 
 @end
 
@@ -52,8 +54,14 @@
     [_scrollView addSubview:_infoView];
     [_scrollView setShowsHorizontalScrollIndicator:NO];
     
+    [_pageControl setNumberOfPages:0];
+    
     [[BNRDataStore sharedStore] getFactsWithCompletion:^(NSArray *facts, NSError *err) {
         _facts = facts;
+        
+        [_pageControl setNumberOfPages:(_facts.count + 1)];
+        [_pageControl setCurrentPage:0];
+        
         [self layoutScrollView];
     }];
 }
@@ -80,53 +88,29 @@
     [_scrollView setContentSize:size];
 }
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-//    return [_facts count];
-//}
-//
-//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-//{
-//    BNRFact *theFact = [_facts objectAtIndex:section];
-//    
-//    CGRect frame = CGRectMake(0, 0, tableView.frame.size.width, 75);
-//    UIView *view = [[UIView alloc] initWithFrame:frame];
-//    [view setBackgroundColor:[UIColor yellowColor]];
-//    
-//    UILabel *question = [[UILabel alloc] initWithFrame:frame];
-//    [question setNumberOfLines:0];
-//    [question setText:theFact.question];
-//    [view addSubview:question];
-//    
-//    return view;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-//{
-//    return 75;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//    return 1;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    BNRFactCell *cell = [BNRFactCell cellForTableView:tableView target:self configure:nil];
-//    
-//    BNRFact *theFact = [_facts objectAtIndex:indexPath.section];
-////    [[cell factLabel] setText:theFact.answer];
-//    [cell setFactText:theFact.answer];
-//    
-//    return cell;
-//}
-//
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    BNRFact *theFact = [_facts objectAtIndex:indexPath.section];
-//    
-//    return [BNRFactCell heightForCellWithString:theFact.answer];
-//}
+#pragma mark - Scroll view methods
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+{
+    if(![scrollView isEqual:_scrollView])
+        return;
+    
+    [self handleScrollStop:scrollView];
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
+{
+    if(![scrollView isEqual:_scrollView])
+        return;
+    
+    if(!decelerate)
+        [self handleScrollStop:scrollView];
+}
+
+- (void)handleScrollStop:(UIScrollView *)sv
+{
+    int page = sv.contentOffset.x / sv.bounds.size.width;
+    [_pageControl setCurrentPage:page];
+}
 
 @end
