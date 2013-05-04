@@ -73,6 +73,9 @@
         [[BNRDataStore sharedStore] getHeadlineInfoWithCompletion: ^(BNRHeadline *headline, NSError *error) {
             _headline = headline;
             [self configureHeadline];
+            UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
+                                                                                         action:@selector(headlineTapped:)];
+            [_headlineView addGestureRecognizer: tapGesture];
             [[BNRDataStore sharedStore] getHeadlineImage: headline WithCompletion: ^(NSData *imageData, NSError *err) {
                 if (imageData) {
                     //[activityIndicatorView stopAnimating];
@@ -80,9 +83,6 @@
                     if (image) {
                         [headline setHeadlineImage: image];
                         [self configureHeadline];
-                        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget: self
-                                                                                                     action:@selector(headlineTapped:)];
-                        [_headlineView addGestureRecognizer: tapGesture];
                     }
                 }
             }];
