@@ -11,5 +11,7 @@
 @interface UIColor (Carter)
 
 + (UIColor *)carterBackgroundColor;
++ (UIColor *)carterRedColor;
++ (UIColor *)carterBlueColor;
 
 @end

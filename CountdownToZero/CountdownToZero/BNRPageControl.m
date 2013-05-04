@@ -39,7 +39,7 @@
 {
     // Default colors.
     self.backgroundColor = [UIColor clearColor];
-    self.dotColorCurrentPage = [UIColor colorWithRed:205/255.0 green:67/255.0 blue:22/255.0 alpha:1];
+    self.dotColorCurrentPage = [UIColor carterRedColor];
     self.dotColorOtherPage = [UIColor lightGrayColor];
 }
 

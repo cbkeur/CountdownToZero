@@ -9,8 +9,12 @@
 #import <MapKit/MapKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MessageUI/MessageUI.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "BNRContactVC.h"
+
+// Controllers
+#import "BNRMapVC.h"
 
 @interface BNRContactVC () <MKMapViewDelegate, MFMailComposeViewControllerDelegate, UIAlertViewDelegate>
 
@@ -53,6 +57,8 @@
     MKCoordinateRegion region = MKCoordinateRegionMake(coord, MKCoordinateSpanMake(0.005, 0.005));
     [_mapView setRegion:region animated:NO];
     [_mapView addAnnotation:[BNRCarterCenter theCenter]];
+    [_mapView.layer setBorderColor:[[UIColor whiteColor] CGColor]];
+    [_mapView.layer setBorderWidth:8];
     
     if(![[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"tel://"]])
     {
@@ -66,10 +72,15 @@
 
 #pragma mark - Actions
 
+- (IBAction)viewMap:(id)sender
+{
+    BNRMapVC *mapVC = [[BNRMapVC alloc] init];
+    UINavigationController *nc = [[UINavigationController alloc] initWithRootViewController:mapVC];
+    [self.tabBarController presentViewController:nc animated:YES completion:nil];
+}
+
 - (IBAction)call:(id)sender
 {
-    
-    
     NSString *message;
     if([sender isEqual:_phone1Btn])
     {
@@ -126,12 +137,6 @@
     }
     
     return annotView;
-}
-
-- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views
-{
-//    id<MKAnnotation> annot = [views objectAtIndex:0];
-//    [mapView selectAnnotation:annot animated:NO];
 }
 
 @end

@@ -50,6 +50,8 @@
 {
     [super viewDidLoad];
     
+    [_infoView setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
+    
     [_scrollView setPagingEnabled:YES];
     [_scrollView addSubview:_infoView];
     [_scrollView setShowsHorizontalScrollIndicator:NO];
@@ -76,6 +78,7 @@
     {
         frame.origin.x = frame.size.width * i;
         BNRFactPage *page = [[BNRFactPage alloc] initWithFrame:frame];
+        [page setAutoresizingMask:UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight];
         [_scrollView addSubview:page];
         
         BNRFact *fact = [_facts objectAtIndex:(i-1)];

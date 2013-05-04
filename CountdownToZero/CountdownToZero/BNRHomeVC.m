@@ -10,13 +10,14 @@
 
 // View
 #import "BNRCountdownView.h"
+#import "BNRGuineaGraph.h"
 
 // Controller
 #import "BNRHeadlineVC.h"
 
-@interface BNRHomeVC ()
+@interface BNRHomeVC () <BNRGuineaGraphDataSource>
 
-@property (weak, nonatomic) IBOutlet BNRCountdownView *countdownView;
+@property (weak, nonatomic) IBOutlet BNRGuineaGraph *graph;
 
 @end
 
@@ -32,7 +33,7 @@
     {
 //        UIImageView *titleView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"head"]];
 //        [self.navigationItem setTitleView:titleView];
-        [self.navigationItem setTitle:@"Guinea Worm"];
+        [self.navigationItem setTitle:@"Countdown to Zero"];
     }
     
     return self;
@@ -50,11 +51,11 @@
     [super viewDidAppear:animated];
     
     static BOOL firstLoad = YES;
-    if(firstLoad)
-    {
-        [_countdownView countdownFrom:10000 to:6 duration:1 completion:nil];
+//    if(firstLoad)
+//    {
         firstLoad = NO;
-    }
+        [_graph growGraph];
+//    }
 }
 
 #pragma mark - Actions
@@ -63,6 +64,33 @@
 {
     BNRHeadlineVC *headlineVC = [[BNRHeadlineVC alloc] init];
     [self.navigationController pushViewController:headlineVC animated:YES];
+}
+
+#pragma mark - Graph data source methods
+
+- (int)numberOfEntriesInGraph:(BNRGuineaGraph *)graph
+{
+    return 3;
+}
+
+- (CGFloat)graph:(BNRGuineaGraph *)graph valueForEntryAtIndex:(int)index
+{
+    if(index == 0)
+        return 150;
+    else if(index == 1)
+        return 80;
+    else
+        return 15;
+}
+
+- (NSString *)graph:(BNRGuineaGraph *)graph titleForEntryAtIndex:(int)index
+{
+    if(index == 0)
+        return @"2011";
+    else if(index == 1)
+        return @"2012";
+    else
+        return @"2013";
 }
 
 @end

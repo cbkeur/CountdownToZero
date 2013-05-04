@@ -12,6 +12,7 @@
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
 			<string>IBProxyObject</string>
+			<string>IBUIImageView</string>
 			<string>IBUILabel</string>
 			<string>IBUIScrollView</string>
 			<string>IBUIView</string>
@@ -97,12 +98,12 @@
 			</object>
 			<object class="IBUIView" id="517255152">
 				<reference key="NSNextResponder"/>
-				<int key="NSvFlags">292</int>
+				<int key="NSvFlags">293</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="IBUILabel" id="54616615">
 						<reference key="NSNextResponder" ref="517255152"/>
-						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{50, 77}, {220, 173}}</string>
+						<int key="NSvFlags">293</int>
+						<string key="NSFrame">{{23, 40}, {274, 288}}</string>
 						<reference key="NSSuperview" ref="517255152"/>
 						<reference key="NSWindow"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
@@ -115,7 +116,12 @@
 						<int key="IBUIContentMode">7</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-						<string key="IBUIText">Guinea worm disease is on track to become the first disease eradicated without the use of vaccines or medical treatment.</string>
+						<string type="base64-UTF8" key="IBUIText">R3VpbmVhIHdvcm0gZGlzZWFzZSBpcyBwb2lzZWQgdG8gYmUgdGhlIG5leHQgaHVtYW4gZGlzZWFzZSBh
+ZnRlciBzbWFsbHBveCB0byBiZSBlcmFkaWNhdGVkLgoKV2hlbiBUaGUgQ2FydGVyIENlbnRlciBiZWdh
+biBsZWFkaW5nIHRoZSBjYW1wYWlnbiB0byBlcmFkaWNhdGUgR3VpbmVhIHdvcm0gaW4gMTk4NiwgdGhl
+cmUgd2VyZSBhbiBlc3RpbWF0ZWQgMy41IG1pbGxpb24gY2FzZXMgb2YgdGhlIGRpc2Vhc2UgaW4gMjEg
+Y291bnRyaWVzLiBJbiAyMDEyLCB0aGVyZSB3ZXJlIG9ubHkgNTQyIHByb3Zpc2lvbmFsIGNhc2VzIGlu
+IGZvdXIgQWZyaWNhbiBjb3VudHJpZXMuA</string>
 						<object class="NSColor" key="IBUITextColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MCAwIDAAA</bytes>
@@ -134,13 +140,29 @@
 							<int key="NSfFlags">16</int>
 						</object>
 						<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
-						<double key="preferredMaxLayoutWidth">220</double>
+						<double key="preferredMaxLayoutWidth">274</double>
+					</object>
+					<object class="IBUIImageView" id="720136263">
+						<reference key="NSNextResponder" ref="517255152"/>
+						<int key="NSvFlags">269</int>
+						<string key="NSFrame">{{-22, 324}, {364, 244}}</string>
+						<reference key="NSSuperview" ref="517255152"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="54616615"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<int key="IBUIContentMode">1</int>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">AfricaFinal.png</string>
+						</object>
 					</object>
 				</array>
 				<string key="NSFrameSize">{320, 568}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="54616615"/>
+				<reference key="NSNextKeyView" ref="720136263"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<reference key="IBUIBackgroundColor" ref="576502021"/>
 				<reference key="IBUISimulatedDestinationMetrics" ref="153625585"/>
@@ -223,6 +245,7 @@
 						<reference key="object" ref="517255152"/>
 						<array class="NSMutableArray" key="children">
 							<reference ref="54616615"/>
+							<reference ref="720136263"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -242,6 +265,11 @@
 						<reference key="object" ref="894525714"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">22</int>
+						<reference key="object" ref="720136263"/>
+						<reference key="parent" ref="517255152"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -255,12 +283,13 @@
 				<string key="14.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.CustomClassName">BNRPageControl</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="22.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">21</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -313,6 +342,10 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
+		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
+			<string key="NS.key.0">AfricaFinal.png</string>
+			<string key="NS.object.0">{1038, 768}</string>
+		</object>
 		<string key="IBCocoaTouchPluginVersion">2083</string>
 	</data>
 </archive>
